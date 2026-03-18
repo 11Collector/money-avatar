@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { db } from "../../../src/lib/firebaseConfig"; 
+import { db } from "@/src/lib/firebaseConfig"; 
 import { collection, getDocs } from "firebase/firestore";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, LabelList } from "recharts";
 
@@ -23,7 +23,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const querySnapshot = await getDocs(collection(db, "money_dna_results"));
+      const querySnapshot = await getDocs(collection(db, "quiz_results"));
       const results = querySnapshot.docs.map(doc => doc.data());
       const totalCount = results.length;
       setTotal(totalCount);
