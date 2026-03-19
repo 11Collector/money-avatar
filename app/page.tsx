@@ -16,6 +16,7 @@ import DisclaimerFooter from '../app/components/DisclaimerFooter';
 import { Quote } from 'lucide-react';
 // 1. เพิ่มการ Import db (สมมติว่าไฟล์ config อยู่ที่พาธนี้ รบกวนเช็คพาธไฟล์ตัวเองด้วยนะครับ)
 import { db } from "../src//lib/firebaseConfig"; 
+import { MessageCircle } from 'lucide-react';
 
 const saveDataToFirebase = async (
   nickname: string, 
@@ -99,17 +100,17 @@ const jargonDict = [
   { keywords: ["ai", "เอไอ"], word: "AI (Artificial Intelligence)", desc: "ปัญญาประดิษฐ์ที่สามารถประมวลผล คิดวิเคราะห์ และช่วยทำงานต่างๆ แทนมนุษย์ได้" },
   { keywords: ["core port", "satellite port"], word: "Core Port & Satellite Port", desc: "กลยุทธ์จัดพอร์ต โดยมี Core Port เป็นพอร์ตหลัก(เน้นมั่นคง) และแบ่งเงินส่วนน้อยไปเล่น Satellite Port(พอร์ตดาวเทียม เน้นเสี่ยงซิ่งๆ)" },
   { keywords: ["fractional shares", "เศษหุ้น"], word: "Fractional Shares (เศษหุ้น)", desc: "การซื้อหุ้นบริษัทยักษ์ใหญ่ (เช่น ซื้อหุ้น Apple) ในราคาแค่หลักร้อยบาท โดยได้มาเป็นเศษส่วนของหุ้น ไม่ต้องซื้อเต็ม 1 หุ้น" },
-  { keywords: ["burner wallet", "กระเป๋ารอง"], word: "Burner Wallet (กระเป๋ารอง)", desc: "กระเป๋าเงินดิจิทัลที่เอาไว้ใช้ทำกิจกรรมเสี่ยงๆ โดนแฮกก็ไม่เป็นไร เพราะไม่ได้เอาเงินก้อนใหญ่เก็บไว้ในนี้" },
-  { keywords: ["staking"], word: "Staking", desc: "การเอาเหรียญคริปโตไปล็อกไว้ในระบบเพื่อช่วยตรวจสอบธุรกรรม และได้ผลตอบแทนกลับมาคล้ายๆ ดอกเบี้ยเงินฝาก" },
-  { keywords: ["tokenomics"], word: "Tokenomics", desc: "ระบบเศรษฐศาสตร์ของเหรียญคริปโตนั้นๆ (เช่น เหรียญนี้ผลิตมาเท่าไหร่ เอาไปใช้ทำอะไรได้บ้าง แจกจ่ายยังไง)" },
   { keywords: ["profit run", "let profit run"], word: "Let Profit Run", desc: "กฎการลงทุนที่ปล่อยให้หุ้นที่กำไรวิ่งขึ้นไปเรื่อยๆ ตามเทรนด์ ไม่รีบขายหมูทิ้งซะก่อน" },
   { keywords: ["panic sell"], word: "Panic Sell", desc: "การตกใจเทขายหุ้นทิ้งแบบไม่คิดชีวิต เวลาเห็นราคาดิ่งลงแรงๆ มักทำไปด้วยอารมณ์มากกว่าเหตุผล" },
-  { keywords: ["rug pull"], word: "Rug Pull", desc: "วงการคริปโตเรียกว่า 'โดนดึงพรม' คือการที่ผู้สร้างโปรเจกต์หอบเงินนักลงทุนหนีไปดื้อๆ เหรียญไร้มูลค่าทันที" },
+  { keywords: ["rug pull"], word: "Rug Pull", desc: "วงการคริปโตเรียกว่า 'โดนดึงพรม' หรือการที่ผู้สร้างเหรียญ (มักเป็นเหรียญมีม) หอบเงินนักลงทุนหนีไปดื้อๆ เหรียญไร้มูลค่าทันที" },
   { keywords: ["circuit breaker"], word: "Circuit Breaker", desc: "ระบบเบรกฉุกเฉินของตลาดหุ้น หากหุ้นตกรุนแรงเกินไป ตลาดจะสั่งหยุดการซื้อขายชั่วคราวให้นักลงทุนไปตั้งสติ" },
   { keywords: ["hedging"], word: "Hedging", desc: "การป้องกันความเสี่ยง เช่น เรากลัวหุ้นไทยตก เลยแบ่งเงินไปซื้อทองคำหรือหุ้นต่างประเทศเผื่อไว้ถ่วงน้ำหนักกัน" },
   { keywords: ["refinance", "retention"], word: "Refinance / Retention", desc: "การขอลดดอกเบี้ยบ้าน (Refinance = ย้ายธนาคารใหม่, Retention = ขอขอลดดอกเบี้ยกับธนาคารเดิม)" },
   { keywords: ["56-1", "แบบฟอร์ม 56-1"], word: "แบบฟอร์ม 56-1", desc: "รายงานประจำปีที่บริษัทในตลาดหุ้นต้องส่งให้ ก.ล.ต. มีข้อมูลละเอียดมาก ตั้งแต่ความเสี่ยงยันงบการเงิน" },
-  // ... (คำศัพท์เดิมด้านบน) ...
+  
+  // 💡 หมวด: คริปโตพื้นฐาน & เหรียญมีม (อัปเดตใหม่)
+  { keywords: ["btc", "eth", "bitcoin", "ethereum"], word: "BTC / ETH", desc: "คริปโตเคอร์เรนซีตัวหลักที่ได้รับการยอมรับมากที่สุด เปรียบเสมือนทองคำดิจิทัลและโครงสร้างพื้นฐานของโลกคริปโต" },
+  { keywords: ["เหรียญมีม", "meme coin", "มีม"], word: "Meme Coin (เหรียญมีม)", desc: "เหรียญคริปโตที่สร้างขึ้นมาจากมุกตลกหรือกระแสอินเทอร์เน็ต (เช่น หมา แมว) ราคาผันผวนรุนแรงตามกระแสโซเชียล เสี่ยงสูงมาก" },
 
   // 💡 หมวด: เทรดดิ้ง & สายซิ่ง (Trading & Futures)
   { keywords: ["short", "ชอร์ต", "แทงลง"], word: "Short (ชอร์ตหุ้น / แทงลง)", desc: "คาดว่าราคาจะตก เลยยืมหุ้น/เหรียญมาขายก่อน พอราคาตกจริงๆ ค่อยซื้อของถูกไปคืน เพื่อกินกำไรส่วนต่าง" },
@@ -139,15 +140,13 @@ const jargonDict = [
   // 💡 หมวด: อคติทางการลงทุน (Investment Biases)
   { keywords: ["anchoring bias", "anchoring"], word: "Anchoring Bias", desc: "อคติการยึดติดราคาในอดีต เช่น เห็นหุ้นเคยราคา 200 บาท ตอนนี้เหลือ 50 บาท ก็คิดเอาเองว่ามันต้องกลับไป 200 บาทแน่ๆ (ทั้งที่พื้นฐานอาจจะพังไปแล้ว)" },
   { keywords: ["confirmation bias", "confirmation"], word: "Confirmation Bias", desc: "อคติการเลือกรับข้อมูล เราจะเลือกอ่านหรือฟังแต่ข่าวดีที่เข้าข้างการตัดสินใจของตัวเอง และบล็อกข้อมูลของคนที่เห็นต่าง" },
-  // 💡 หมวด: ครีเอเตอร์ & เทคโนโลยี (Creator & Tech)
+  
+  // 💡 หมวด: ครีเอเตอร์ & โซเชียลมีเดีย (Content & Social Media)
   { keywords: ["ko-fi", "kofi"], word: "Ko-fi", desc: "แพลตฟอร์มสนับสนุนครีเอเตอร์ แฟนคลับสามารถโดเนทเงินสนับสนุน (อารมณ์เหมือนเลี้ยงกาแฟ) หรือใช้เป็นหน้าร้านขายผลงานดิจิทัล เช่น E-book ก็ได้" },
   { keywords: ["e-book", "อีบุ๊ก"], word: "E-book (หนังสืออิเล็กทรอนิกส์)", desc: "หนังสือในรูปแบบไฟล์ดิจิทัลที่สามารถเปิดอ่านได้บนมือถือหรือแท็บเล็ต เป็นหนึ่งในสินค้าดิจิทัลที่ครีเอเตอร์นิยมทำเพื่อสร้างรายได้" },
-  { keywords: ["nft", "non-fungible token"], word: "NFT (Non-Fungible Token)", desc: "สินทรัพย์ดิจิทัลที่มีชิ้นเดียวในโลก ทำซ้ำหรือปลอมแปลงไม่ได้ มักอยู่ในรูปแบบงานศิลปะ ของสะสม หรือตัวละครสิทธิ์ขาด" },
-  { keywords: ["web3", "เว็บ3"], word: "Web 3.0", desc: "อินเทอร์เน็ตยุคใหม่ที่เน้นการกระจายศูนย์ (Decentralized) ขับเคลื่อนด้วยบล็อกเชน ให้ผู้ใช้งานมีกรรมสิทธิ์ในข้อมูลและสินทรัพย์ของตัวเองจริงๆ" },
-  // 💡 หมวด: ครีเอเตอร์ & โซเชียลมีเดีย (Content & Social Media)
   { keywords: ["content pillar", "คอนเทนต์พิลลาร์"], word: "Content Pillar", desc: "เสาหลักของเนื้อหา คือหัวข้อหลักที่ช่องเราจะพูดถึง ช่วยให้แบรนด์มีทิศทางชัดเจน ไม่สะเปะสะปะ" },
   { keywords: ["algorithm", "อัลกอริทึม"], word: "Algorithm (อัลกอริทึม)", desc: "ระบบหลังบ้านของโซเชียลมีเดียที่คอยคัดเลือกคลิปไปโชว์คนดู ยิ่งคนชอบคลิปเรา ระบบยิ่งช่วยดันให้ดัง" },
-  { keywords: ["personal branding", "สร้างตัวตน"], word: "Personal Branding", desc: "การสร้างตัวตนออนไลน์ให้คนจำได้ว่าเราเป็นใคร เก่งเรื่องอะไร (เหมือน 'อัพสกิลกับฟุ้ย' ไงล่ะ!)" },
+  { keywords: ["personal branding", "สร้างตัวตน"], word: "Personal Branding", desc: "การสร้างตัวตนออนไลน์ให้คนจำได้ว่าเราเป็นใคร เก่งเรื่องอะไร" },
   { keywords: ["side hustle", "งานเสริม"], word: "Side Hustle / Side Business", desc: "งานที่ทำขนานไปกับงานประจำเพื่อสร้างรายได้เพิ่มและกระจายความเสี่ยง" },
   { keywords: ["engagement", "ยอดไลก์", "คอมเมนต์"], word: "Engagement", desc: "การมีส่วนร่วมของคนดู เช่น การกดไลก์ คอมเมนต์ แชร์ ซึ่งเป็นตัวชี้วัดความปังของคอนเทนต์" },
 
@@ -620,9 +619,9 @@ const getCurrentJargons = () => {
                 <Camera size={18} /> {isCapturing ? "กำลังประมวลผลรูปภาพ..." : "เซฟรูปอวดเพื่อนลง Story"}
               </button>
 
-              <a href="https://linktr.ee/upskillwithfuii" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full bg-stone-900 text-amber-400 font-bold py-3.5 rounded-xl hover:bg-black transition-all text-[14px] shadow-lg border border-stone-700">
-                <Star size={18} className="fill-amber-400" /> ติดตามอัพสกิลกับฟุ้ย
-              </a>
+            <a href="https://lin.ee/rQawKUM" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full bg-stone-900 text-amber-400 font-bold py-3.5 rounded-xl hover:bg-black transition-all text-[14px] shadow-lg border border-stone-700">
+  <MessageCircle size={18} className="fill-amber-400 text-amber-400" /> คุยผลลัพธ์ต่อ (LINE)
+</a>
 
               <button onClick={resetGame} className="flex-1 bg-stone-100 text-stone-600 font-semibold py-3 rounded-xl text-center text-[12px] flex items-center justify-center gap-1.5 hover:bg-stone-200 transition-colors">
                 <RefreshCcw size={14} /> สแกน AVATAR อีกครั้ง
