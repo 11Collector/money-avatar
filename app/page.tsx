@@ -381,7 +381,7 @@ const getCurrentJargons = () => {
                 <div>
                   <p className="font-bold text-red-600 text-[13px] mb-1">คำเตือน</p>
                   <p className="text-[12px] text-stone-600 leading-relaxed font-light">
-                    โปรดใช้วิจารณญาณก่อนการใช้เงิน เพื่อหาสไตล์ตัวเอง กดเลือก <span className="font-bold bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded">"ตามสัญชาตญาณ"</span> ไม่ต้องคิดเยอะ เพราะเงินคุณไม่ใช่ของผม !
+                    โปรดใช้วิจารณญาณก่อนการใช้เงิน เพื่อหาสไตล์ตัวเอง กดเลือก <span className="font-bold bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded">"ตามสัญชาตญาณ"</span> คิดเยอะๆ เพราะเงินคุณไม่ใช่เงินผม !
                   </p>
                 </div>
               </div>
