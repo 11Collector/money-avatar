@@ -3,7 +3,7 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { useState, useRef } from "react"; 
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Trophy, RefreshCcw, Camera, AlertTriangle, ArrowLeft, ArrowRight, Loader2, Zap, Target, Info, X, Star, BookOpen
+  Trophy, RefreshCcw, Camera, AlertTriangle, ArrowLeft, ArrowRight, Loader2, Zap, Target, Info, X, Star, BookOpen, PieChart, Users
 } from "lucide-react"; 
 import { toPng } from "html-to-image"; 
 import Image from "next/image";
@@ -17,6 +17,8 @@ import { Quote } from 'lucide-react';
 // 1. เพิ่มการ Import db (สมมติว่าไฟล์ config อยู่ที่พาธนี้ รบกวนเช็คพาธไฟล์ตัวเองด้วยนะครับ)
 import { db } from "../src//lib/firebaseConfig"; 
 import { MessageCircle } from 'lucide-react';
+
+
 
 const saveDataToFirebase = async (
   nickname: string, 
@@ -63,9 +65,9 @@ const personaOptions = [
   { id: "ไม่ระบุ", label: "ไม่ระบุ", emoji: "😎" },
 ];
 
-// 📚 พจนานุกรมศัพท์การเงิน (อัปเดตสแลง & คำศัพท์ตามที่คุณฟุ้ยขอ)
 // 📚 พจนานุกรมศัพท์การเงิน (อัปเดตครอบคลุมศัพท์ใน Choice ทั้งหมด)
 const jargonDict = [
+
   { keywords: ["compound effect", "ทบต้น"], word: "Compound Effect (ดอกเบี้ยทบต้น)", desc: "พลังของการนำผลกำไรที่ได้ ไปลงทุนต่อให้ก้อนใหญ่ขึ้นเรื่อยๆ ยิ่งเวลาผ่านไปนาน เงินยิ่งโตแบบทวีคูณ" },
   { keywords: ["dca"], word: "DCA (Dollar Cost Averaging)", desc: "การทยอยลงทุนเรื่อยๆ ด้วยเงินเท่าๆ กันทุกเดือน ช่วยเฉลี่ยต้นทุน ไม่ต้องเดาว่าตลาดจะขึ้นหรือลง" },
   { keywords: ["leverage", "มาร์จิ้น", "margin"], word: "Leverage / Margin", desc: "การกู้ยืมเงินเพื่อมาลงทุนเพิ่ม อำนาจซื้อเยอะขึ้น กำไรไวขึ้น แต่เวลาขาดทุนก็เจ็บหนักทวีคูณเช่นกัน" },
@@ -83,7 +85,7 @@ const jargonDict = [
   { keywords: ["reit", "อสังหาฯ"], word: "กองทุน REIT", desc: "กองทุนรวมอสังหาริมทรัพย์ คือเราเอาเงินไปรวมกันให้กองทุนไปซื้อตึก แล้วเอาค่าเช่าตึกนั้นมาแบ่งปันผลให้เรา" },
   { keywords: ["หุ้น tech", "หุ้นเทค", "tech"], word: "หุ้น Tech", desc: "หุ้นของบริษัทด้านเทคโนโลยี นวัตกรรม (เช่น Apple, Microsoft, NVIDIA) มักจะเติบโตไว แต่ก็สวิงแรง" },
   { keywords: ["corporate bond", "หุ้นกู้"], word: "Corporate Bond (หุ้นกู้)", desc: "คล้ายๆ เราเป็นเจ้าหนี้ ให้บริษัทยืมเงินไปหมุน แล้วบริษัทจะจ่ายดอกเบี้ยให้เราทุกๆ ปี พอครบกำหนดก็คืนเงินต้น" },
-  { keywords: ["high yield", "ผลตอบแทนสูง"], word: "High Yield", desc: "แปลตรงตัวคือ 'ผลตอบแทนสูง' (ดอกเบี้ยสูง/ปันผลสูง) แต่มักจะมาพร้อมกับ 'ความเสี่ยงสูง' ที่จะโดนเบี้ยวหนี้" },
+  { keywords: ["high yield", "ผลตอบแทนสูง", "junk bond"], word: "High Yield Bond (Junk Bond)", desc: "หุ้นกู้ที่ให้ดอกเบี้ยสูงปรี๊ดเพื่อดึงดูดใจ แต่มักเป็นบริษัทที่เรตติ้งความน่าเชื่อถือต่ำ (Non-Investment Grade) เสี่ยงต่อการเบี้ยวหนี้ (Default) สูงมาก" },
   { keywords: ["s&p500", "ดัชนี", "index"], word: "S&P500 / Index Fund", desc: "กองทุนรวมดัชนี การซื้อ S&P500 คือการซื้อตะกร้าหุ้นที่รวมบริษัทที่ใหญ่และเจ๋งที่สุด 500 แห่งของอเมริกาไว้ด้วยกัน" },
   { keywords: ["asset allocation"], word: "Asset Allocation", desc: "การจัดสรรพอร์ต ไม่เอาไข่ทุกใบไว้ในตะกร้าใบเดียว แบ่งเงินไปลงทั้งหุ้น ทอง เงินฝาก เพื่อกระจายความเสี่ยง" },
   { keywords: ["emergency fund", "สำรองฉุกเฉิน"], word: "Emergency Fund", desc: "เงินสำรองฉุกเฉิน ก้อนเงินที่เก็บไว้เผื่อตกงานหรือป่วย ควรมีให้พอใช้สัก 3-6 เดือน โดยฝากไว้ในที่ที่ถอนง่ายๆ" },
@@ -175,6 +177,7 @@ const jargonDict = [
   { keywords: ["play money", "เงินเที่ยว"], word: "Play Money", desc: "เงินก้อนที่แบ่งไว้เพื่อใช้จ่ายไร้สาระหรือเปย์ความสุขโดยเฉพาะ เพื่อให้เราไม่เครียดกับการออมจนเกินไป" },
   { keywords: ["resell", "รีเซล"], word: "Resell (การขายต่อ)", desc: "การซื้อของมาเพื่อขายต่อในราคาที่สูงกว่าเดิม มักใช้กับวงการ Art Toy, รองเท้าหรู หรือบัตรคอนเสิร์ต" },
   { keywords: ["wheel of life", "วงล้อชีวิต"], word: "Wheel of Life (วงล้อชีวิต)", desc: "เครื่องมือประเมินความสมดุลของชีวิตในด้านต่างๆ เพื่อดูว่าเราต้องอัปสกิลด้านไหนเพิ่ม" }
+
 ];
 
 export default function Home() {
@@ -370,7 +373,7 @@ const getCurrentJargons = () => {
               </div>
 
               <button onClick={() => setShowInfo(true)} className="mb-6 inline-flex items-center gap-1.5 text-[11px] font-bold text-amber-700 bg-amber-100/80 hover:bg-amber-200 px-3 py-1.5 rounded-full transition-colors border border-amber-300/50 shadow-sm">
-                <Info size={14} /> แอบดู 9 AVATAR ทางการเงิน
+                <Info size={14} /> ทรง AVATAR ทางการเงิน
               </button>
 
               <div className="w-full bg-white/90 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-red-200 mb-6 flex items-start gap-3 text-left">
@@ -588,7 +591,7 @@ const getCurrentJargons = () => {
 
         
 
-                  {/* ✨ เปลี่ยนหัวข้อ Synergy เป็น โค้ชชิ่งและ Asset ที่แนะนำ ✨ */}
+               {/* --- จุดที่เอาโค้ดมาแทรก (ใต้กรอบแผนอัปสกิลพอร์ต) --- */}
                   <div className="bg-white p-5 rounded-2xl shadow-sm border border-stone-100 mb-4">
                     <h3 className="font-bold text-stone-800 mb-4 text-[13px] border-b border-stone-100 pb-3 flex items-center gap-2">
                       <span className="text-[16px]">🎯</span> แผนอัปสกิลพอร์ต
@@ -605,9 +608,40 @@ const getCurrentJargons = () => {
                     </div>
                   </div>
 
+                  {/* ✨ เริ่มโค้ดปุ่ม 2 เว็บไซต์ที่เพิ่มเข้ามา ✨ */}
+                  <div className="flex flex-col items-center justify-center gap-2 mb-4">
+                    <p className="text-[9px] font-bold text-stone-400 uppercase tracking-widest flex items-center gap-2">
+                      <span className="w-8 h-px bg-stone-200"></span>
+                      เครื่องมืออัปสกิลอื่นๆ
+                      <span className="w-8 h-px bg-stone-200"></span>
+                    </p>
+                    <div className="flex items-center justify-center gap-2 w-full">
+                      <a 
+                        href="https://wheel-of-life-upskill.vercel.app/" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="flex-1 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 bg-white text-stone-600 border border-stone-200 shadow-sm py-2.5 px-1 rounded-xl hover:bg-stone-50 hover:border-amber-300 hover:text-amber-600 transition-all active:scale-95"
+                      >
+                        <PieChart size={14} className="text-amber-500" /> 
+                        <span className="text-[10px] font-bold">เช็กสมดุลชีวิต</span>
+                      </a>
+                      <a 
+                        href="https://disc-office.vercel.app/" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="flex-1 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 bg-white text-stone-600 border border-stone-200 shadow-sm py-2.5 px-1 rounded-xl hover:bg-stone-50 hover:border-sky-400 hover:text-sky-600 transition-all active:scale-95"
+                      >
+                        <Users size={14} className="text-sky-500" /> 
+                        <span className="text-[10px] font-bold">ค้นหาจุดแข็ง</span>
+                      </a>
+                    </div>
+                  </div>
+                  {/* ✨ จบโค้ดปุ่ม ✨ */}
+
                   <div className="mt-2 text-center text-stone-400 text-[9px] uppercase tracking-widest font-semibold pb-4">
                     Created by อัพสกิลกับฟุ้ย
                   </div>
+                  {/* -------------------------------------------------------- */}
                 </div>
               </div>
             </div>
