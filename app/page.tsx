@@ -597,12 +597,12 @@ const getCurrentJargons = () => {
                       <span className="text-[16px]">🎯</span> แผนอัปสกิลพอร์ต
                     </h3>
                     <div className="bg-stone-50 border border-stone-200 p-4 rounded-xl mb-3">
-                      <p className="text-[11px] font-bold text-stone-500 mb-1.5 flex items-center gap-1.5 uppercase tracking-wide"><Target size={14} className="text-amber-500"/> สิ่งที่ควรทำเพิ่ม</p>
+                      <p className="text-[11px] font-bold text-stone-500 mb-1.5 flex items-center gap-1.5 uppercase tracking-wide"><Target size={14} className="text-amber-500"/> คำแนะนำเชิงกลยุทธ์</p>
                       <p className="font-bold text-stone-800 text-[13px] mb-1">{currentResult.bestPartner.name}</p>
                       <p className="text-[11px] text-stone-500 leading-relaxed font-light">{currentResult.bestPartner.desc}</p>
                     </div>
                     <div className="bg-sky-50/50 border border-sky-100 p-4 rounded-xl">
-                      <p className="text-[11px] font-bold text-sky-500 mb-1.5 flex items-center gap-1.5 uppercase tracking-wide"><Zap size={14} className="text-sky-500"/> Asset ที่ควรมีติดพอร์ต</p>
+                      <p className="text-[11px] font-bold text-sky-500 mb-1.5 flex items-center gap-1.5 uppercase tracking-wide"><Zap size={14} className="text-sky-500"/> หลุมพรางทางการเงิน</p>
                       <p className="font-bold text-sky-800 text-[13px] mb-1">{currentResult.kryptonite.name}</p>
                       <p className="text-[11px] text-sky-700/80 leading-relaxed font-light">{currentResult.kryptonite.desc}</p>
                     </div>
@@ -697,7 +697,7 @@ const getCurrentJargons = () => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 z-50 bg-stone-950/70 backdrop-blur-md flex items-center justify-center p-4" onClick={() => setShowJargon(false)}>
             <motion.div initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="bg-white w-full max-w-[320px] max-h-[70vh] rounded-3xl shadow-2xl overflow-hidden flex flex-col border-2 border-sky-100" onClick={e => e.stopPropagation()}>
               <div className="bg-sky-50 text-sky-800 p-4 flex justify-between items-center shrink-0 border-b border-sky-100">
-                <h3 className="font-bold text-[14px] flex items-center gap-2"><BookOpen size={16} className="text-sky-600"/> คลังศัพท์การเงิน</h3>
+                <h3 className="font-bold text-[14px] flex items-center gap-2"><BookOpen size={16} className="text-sky-600"/> คลังศัพท์น่ารู้</h3>
                 <button onClick={() => setShowJargon(false)} className="bg-white p-1.5 rounded-full hover:bg-sky-100 text-sky-600 transition"><X size={16}/></button>
               </div>
               <div className="overflow-y-auto p-5 space-y-4">
