@@ -476,13 +476,13 @@ const getCurrentJargons = () => {
               {/* ✨ ปรับแต่ง Box คำตอบให้ Layout ไม่พังเวลากดตอบ ✨ */}
          {/* เพิ่ม pb-6 ให้กล่องไม่ตัดขอบล่าง และเพิ่ม p-1 กันเงาโดนตัด */}
 <div className="space-y-3 max-h-[45vh] overflow-y-auto p-1 pb-6">
-  {activeScenarios[currentIndex]?.choices.map((choice: any, index: number) => {
-    const isSelected = answers[currentIndex]?.choiceIndex === index;
-    return (
-      <button
-        key={index}
-        disabled={isTransitioning}
-        onClick={() => handleChoice(choice.risk, choice.disc, index)}
+{activeScenarios[currentIndex]?.choices.map((choice: any, index: number) => {
+  const isSelected = answers[currentIndex]?.choiceIndex === index;
+  return (
+    <button
+      key={`${currentIndex}-${index}`} // ✅ เพิ่ม currentIndex เข้าไป ให้มันเคลียร์ปุ่มใหม่ทุกข้อ
+      disabled={isTransitioning}
+      onClick={() => handleChoice(choice.risk, choice.disc, index)}
         // เอา scale ออกตอน select แล้วใช้ ring-2 ทำไฮไลท์ขอบแทน จะสวยและไม่โดนตัดชัวร์ๆ
         className={`w-full text-left px-5 py-4 rounded-xl text-[13px] leading-relaxed font-medium border-2 transition-all active:scale-[0.98] shadow-sm 
           ${isSelected 
