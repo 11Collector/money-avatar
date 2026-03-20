@@ -19,7 +19,7 @@ export const resultData: Record<string, FinancialType> = {
     color: "bg-purple-600", barColor: "bg-purple-500", emoji: "🧠", titleColor: "text-purple-600",
     desc: "วิศวกรพอร์ตโฟลิโอตัวตึง! บริหารความเสี่ยงเป๊ะ แผนเกษียณแน่น กล้าลุยของซิ่งแต่เข้าออกตามระบบเป๊ะๆ ไร้อารมณ์เจือปนเหมือนหุ่นยนต์เทรด",
     motto: "ความเชื่อมั่นมีไว้ให้ระบบ ส่วนกำไรมีไว้ให้คนที่มีวินัย",
-    bestPartner: { name: "อนุพันธ์ (TFEX) & สเกลด้วย Bot Trade 🎯", desc: "วินัยเหล็กแบบคุณเหมาะกับการใช้ Leverage อย่างมีระบบใน TFEX หรือตลาดฟิวเจอร์ส รวมถึงการเขียน Bot Trade เพื่อรันระบบให้สมบูรณ์แบบ" },
+    bestPartner: { name: "สเกลพอร์ตด้วย Systematic Trading & Leverage 🎯", desc: "วินัยเหล็กแบบคุณเหมาะกับการใช้ 'คานงัด (Leverage)' อย่างเป็นระบบ (เช่น TFEX, Margin หรือคริปโต) รวมถึงการเขียน Bot Trade เพื่อรันพอร์ตให้โตไวแบบไร้อารมณ์เจือปน" },
     kryptonite: { name: "Over-Optimization (ยึดติดระบบเกินไป) ⚡", desc: "การเชื่อมั่นใน Backtest มากไปจนลืมเผื่อใจให้เหตุการณ์ Black Swan หรือตลาดที่เปลี่ยนพฤติกรรมกะทันหัน อาจทำให้ระบบรวนได้" }
   },
   MID_RISK_HIGH_DISC: {
