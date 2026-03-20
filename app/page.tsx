@@ -108,7 +108,16 @@ const jargonDict = [
   { keywords: ["hedging"], word: "Hedging", desc: "กลยุทธ์การลงทุนหรือเครื่องมือที่นำมาใช้เพื่อชดเชย ลดทอน หรือปกป้องพอร์ตการลงทุนหลักจากการเคลื่อนไหวของราคาที่สวนทาง" },
   { keywords: ["refinance", "retention"], word: "Refinance / Retention", desc: "กระบวนการขอลดอัตราดอกเบี้ยสินเชื่อ (Refinance คือการรีไฟแนนซ์กับธนาคารแห่งใหม่, Retention คือการขอลดอัตราดอกเบี้ยกับธนาคารเดิม)" },
   { keywords: ["56-1", "แบบฟอร์ม 56-1"], word: "แบบฟอร์ม 56-1", desc: "แบบแสดงรายการข้อมูลประจำปีที่บริษัทจดทะเบียนต้องยื่นต่อ ก.ล.ต. ซึ่งรวบรวมข้อมูลโครงสร้างธุรกิจ ความเสี่ยง และผลการดำเนินงาน" },
-  { keywords: ["btc", "eth", "bitcoin", "ethereum"], word: "BTC / ETH", desc: "คริปโตเคอร์เรนซีที่มีมูลค่าตลาดสูงสุด 2 อันดับแรก ซึ่งเป็นเครือข่ายบล็อกเชนหลักที่ถูกใช้งานเป็นโครงสร้างพื้นฐานของโลกสินทรัพย์ดิจิทัล" },
+{ 
+  keywords: ["btc", "bitcoin", "digital gold"], 
+  word: "BTC (Bitcoin)", 
+  desc: "สกุลเงินดิจิทัลอันดับหนึ่งที่ได้รับการยอมรับในฐานะ 'ทองคำดิจิทัล' (Digital Gold) ด้วยคุณสมบัติเด่นเรื่องความจำกัดของจำนวนเหรียญ และความปลอดภัยสูงสุด เพื่อใช้เป็นสินทรัพย์หลักในการเก็บรักษาตัวมูลค่า (Store of Value)" 
+},
+{ 
+  keywords: ["eth", "ethereum", "smart contract"], 
+  word: "ETH (Ethereum)", 
+  desc: "เครือข่ายบล็อกเชนที่เป็นโครงสร้างพื้นฐานหลักของโลกสินทรัพย์ดิจิทัล โดดเด่นด้วยเทคโนโลยี 'สัญญาอัจฉริยะ' (Smart Contract) ที่เปรียบเสมือนระบบปฏิบัติการ (OS) สำหรับสร้างแอปพลิเคชันไร้ตัวกลางและระบบการเงินรูปแบบใหม่" 
+},
   { keywords: ["เหรียญมีม", "meme coin", "มีม"], word: "Meme Coin (เหรียญมีม)", desc: "คริปโตเคอร์เรนซีที่ถูกสร้างขึ้นโดยมีจุดเริ่มต้นจากมุกตลก วัฒนธรรมอินเทอร์เน็ต หรือกระแสในโซเชียลมีเดีย" },
   { keywords: ["short", "ชอร์ต", "แทงลง"], word: "Short (ชอร์ตหุ้น / แทงลง)", desc: "กระบวนการยืมสินทรัพย์มาขายในตลาดก่อน และทำการซื้อคืนในภายหลัง มักใช้เพื่อทำกำไรในสภาวะที่คาดว่าราคาจะปรับตัวลดลง" },
   { keywords: ["long", "เปิด long", "แทงขึ้น"], word: "Long (เปิดลอง / แทงขึ้น)", desc: "การเปิดสถานะซื้อโดยมีความคาดหวังว่าสินทรัพย์นั้นจะมีมูลค่าเพิ่มสูงขึ้นในอนาคต (หลักการซื้อถูกเพื่อนำไปขายแพง)" },
@@ -163,8 +172,61 @@ const jargonDict = [
   { keywords: ["dying with zero"], word: "Dying with Zero", desc: "แนวทางการวางแผนการเงินที่มุ่งเน้นการจัดสรรเงินทุนเพื่อสร้างประสบการณ์ชีวิตในแต่ละช่วงวัย แทนที่การสะสมมูลค่าไว้จนถึงวาระสุดท้าย" },
   { keywords: ["ubi", "universal basic income"], word: "UBI (Universal Basic Income)", desc: "แนวคิดนโยบายทางเศรษฐกิจรูปแบบหนึ่ง ที่รัฐบาลจะเป็นผู้จ่ายเงินจำนวนพื้นฐานให้กับประชาชนทุกคนอย่างสม่ำเสมอและไม่มีเงื่อนไข" },
   { keywords: ["emerging market", "ตลาดเกิดใหม่"], word: "Emerging Market", desc: "ตลาดการลงทุนในกลุ่มประเทศที่มีสถานะเป็นประเทศกำลังพัฒนา ซึ่งมีอัตราการขยายตัวทางเศรษฐกิจในระดับที่สูง" },
-  { keywords: ["art toy", "อาร์ตทอย"], word: "Art Toy", desc: "ผลงานประติมากรรมในรูปแบบของเล่นสะสมที่ออกแบบโดยศิลปิน มักผลิตขึ้นในจำนวนจำกัด ทำให้เกิดระบบการประเมินมูลค่าในตลาดนักสะสม" }
+  { keywords: ["art toy", "อาร์ตทอย"], word: "Art Toy", desc: "ผลงานประติมากรรมในรูปแบบของเล่นสะสมที่ออกแบบโดยศิลปิน มักผลิตขึ้นในจำนวนจำกัด ทำให้เกิดระบบการประเมินมูลค่าในตลาดนักสะสม" },
+  // ✨ ศัพท์ชุดใหม่ที่เพิ่มเข้ามาเพื่อรองรับหน้า 9 AVATAR โดยเฉพาะ ✨
+  { 
+    keywords: ["barbell", "บาร์เบล"], 
+    word: "Barbell Strategy (กลยุทธ์บาร์เบล)", 
+    desc: "กลยุทธ์การจัดพอร์ตแบบสุดโต่ง 2 ฝั่ง คือแบ่งเงินก้อนใหญ่ (เช่น 80%) ไว้ในที่ที่ปลอดภัยสุดๆ และเอาเงินก้อนเล็ก (20%) ไปเสี่ยงให้สุดขั้ว โดยไม่ลงทุนแบบครึ่งๆ กลางๆ" 
+  },
+  { 
+    keywords: ["black swan", "แบล็กสวอน", "ไม่คาดฝัน"], 
+    word: "Black Swan (เหตุการณ์หงส์ดำ)", 
+    desc: "ทฤษฎีที่ใช้อธิบายเหตุการณ์ที่ไม่มีใครคาดคิด โอกาสเกิดขึ้นน้อยมาก แต่เมื่อเกิดขึ้นแล้วจะส่งผลกระทบรุนแรงมหาศาลต่อตลาด (เช่น วิกฤตโรคระบาด)" 
+  },
+  { 
+    keywords: ["money market", "ตลาดเงิน"], 
+    word: "Money Market Fund (กองทุนรวมตลาดเงิน)", 
+    desc: "กองทุนที่นำเงินไปลงทุนในตราสารหนี้ระยะสั้นมาก มีความเสี่ยงต่ำที่สุดเทียบเท่าการฝากเงิน แต่ให้ผลตอบแทนดีกว่าออมทรัพย์ปกติเล็กน้อย" 
+  },
+  { 
+    keywords: ["mixed fund", "กองทุนรวมผสม", "mixed"], 
+    word: "Mixed Fund (กองทุนรวมผสม)", 
+    desc: "กองทุนที่มีผู้จัดการกองทุนคอยจัดสัดส่วนกระจายการลงทุนไปในหลายสินทรัพย์ (เช่น หุ้น + ตราสารหนี้) จบในตัวเดียว เพื่อรักษาสมดุลความเสี่ยง" 
+  },
+  { 
+    keywords: ["revenge trading", "เอาคืน", "เทรดล้างแค้น"], 
+    word: "Revenge Trading (การเทรดล้างแค้น)", 
+    desc: "สภาวะอารมณ์ที่หน้ามืด พยายามจะเทรดเพื่อเอาเงินที่เพิ่งขาดทุนไปกลับคืนมาให้เร็วที่สุด ซึ่งมักนำไปสู่การตัดสินใจที่ผิดพลาดและพังกว่าเดิม" 
+  },
+  { 
+    keywords: ["overtrade", "โอเวอร์เทรด", "over trade"], 
+    word: "Overtrade (การเทรดเกินตัว)", 
+    desc: "การซื้อขายที่บ่อยเกินไป หรือใช้ขนาดเงินทุนและ Leverage ในสัดส่วนที่ใหญ่เกินกว่าที่ระบบหรือแผนบริหารความเสี่ยงจะรับไหว" 
+  },
+  { 
+    keywords: ["loss aversion", "กลัวขาดทุน"], 
+    word: "Loss Aversion (โรคกลัวขาดทุน)", 
+    desc: "อคติทางจิตวิทยาที่มนุษย์จะรู้สึก 'เจ็บปวดจากการสูญเสีย' มากกว่าความรู้สึก 'ดีใจเมื่อได้รับกำไร' ในจำนวนเงินที่เท่ากัน ทำให้ไม่กล้าลงทุน" 
+  },
+  { 
+    keywords: ["lifestyle creep", "ไลฟ์สไตล์", "กับดักไลฟ์สไตล์"], 
+    word: "Lifestyle Creep (กับดักไลฟ์สไตล์)", 
+    desc: "ปรากฏการณ์ที่มาตรฐานการใช้ชีวิตและรายจ่ายของเรา ค่อยๆ ขยับตัวสูงขึ้นตามรายได้ที่เพิ่มขึ้น ทำให้แม้จะหาเงินได้เยอะขึ้น แต่ก็ยังไม่มีเงินเก็บ" 
+  },
+  { 
+    keywords: ["high-income skill", "high income"], 
+    word: "High-Income Skill (ทักษะรายได้สูง)", 
+    desc: "ทักษะเฉพาะทางที่มีมูลค่าสูงในตลาดแรงงาน หรือทักษะที่สามารถนำไปสร้างรายได้จำนวนมากได้โดยไม่ต้องใช้เงินทุนสูง (เช่น การเขียนโค้ด, การขาย, การทำคอนเทนต์)" 
+  }
 ];
+
+// 🗂️ แยกตะกร้าคำถามตามช่วงชีวิต (รวม 100 ข้อ - อัปเดตจัดหมวดหมู่ใหม่)
+const levelMapping = {
+  level1: [8, 9, 11, 13, 14, 15, 18, 21, 24, 32, 33, 36, 39, 41, 43, 45, 47, 49, 50, 51, 52, 53, 54, 67, 68, 69, 70, 76, 77, 79, 81, 95, 100],
+  level2: [1, 2, 3, 5, 6, 7, 16, 17, 19, 22, 23, 28, 30, 35, 37, 38, 40, 44, 55, 57, 58, 59, 60, 73, 74, 75, 78, 83, 84, 91, 92, 97],
+  level3: [4, 10, 12, 20, 25, 26, 27, 29, 31, 34, 42, 46, 48, 56, 61, 62, 63, 64, 65, 66, 71, 72, 80, 82, 85, 86, 87, 88, 89, 90, 93, 94, 96, 98, 99]
+};
 
 export default function Home() {
   const [gameState, setGameState] = useState<"start" | "playing" | "loading" | "result">("start");
@@ -188,8 +250,20 @@ export default function Home() {
     if (!persona) { alert("เลือกทรงทางการเงินของคุณก่อนนะ!"); return; }
     if (!nickname.trim()) { alert("พิมพ์ชื่อเล่นของคุณก่อนนะ!"); return; }
     
-    const randomQuestions = shuffleArray(scenarios).slice(0, TOTAL_QUESTIONS);
-    setActiveScenarios(randomQuestions);
+    // 🎯 ดึงคำถามแยกตาม Level
+    const l1Questions = scenarios.filter(q => levelMapping.level1.includes(q.id));
+    const l2Questions = scenarios.filter(q => levelMapping.level2.includes(q.id));
+    const l3Questions = scenarios.filter(q => levelMapping.level3.includes(q.id));
+
+    // 🎯 สุ่มข้อในแต่ละ Level และตัดมาตามโควต้า 3-4-3
+    const pickedL1 = shuffleArray(l1Questions).slice(0, 3); // ด่านฝ่ากิเลส 3 ข้อ
+    const pickedL2 = shuffleArray(l2Questions).slice(0, 4); // ด่านลงทุน 4 ข้อ
+    const pickedL3 = shuffleArray(l3Questions).slice(0, 3); // ด่านจิตวิทยา 3 ข้อ
+
+    // 🎯 รวมคำถาม โดยเรียงจาก Level 1 -> 2 -> 3 เพื่อให้รู้สึกเหมือนเติบโตขึ้น
+    const journeyQuestions = [...pickedL1, ...pickedL2, ...pickedL3];
+
+    setActiveScenarios(journeyQuestions);
     setAnswers([]); 
     setCurrentIndex(0);
     setGameState("playing");
@@ -210,11 +284,14 @@ const handleChoice = async (riskPoint: number, discPoint: number, index: number)
     }, 250);
   } else {
     // 1. คำนวณคะแนนรวม
+    // 1. คำนวณคะแนนรวม
     const finalRiskScore = newAnswers.reduce((sum, ans) => sum + (ans?.risk || 0), 0);
     const finalDiscScore = newAnswers.reduce((sum, ans) => sum + (ans?.disc || 0), 0);
     
-    const r = finalRiskScore <= 3.5 ? "LOW" : finalRiskScore <= 6.5 ? "MID" : "HIGH";
-    const d = finalDiscScore <= 3.5 ? "LOW" : finalDiscScore <= 6.5 ? "MID" : "HIGH";
+    // ✨ ปรับเกณฑ์ใหม่ บีบแกนกลางให้แคบลง (เต็ม 10 คะแนน)
+    // LOW: <= 4.0 | MID: 4.5 - 5.5 | HIGH: >= 6.0
+    const r = finalRiskScore <= 4.0 ? "LOW" : finalRiskScore < 6.0 ? "MID" : "HIGH";
+    const d = finalDiscScore <= 4.0 ? "LOW" : finalDiscScore < 6.0 ? "MID" : "HIGH";
     const finalKey = `${r}_RISK_${d}_DISC`;
 
     // 2. ✨ สร้างชุดข้อมูล Q&A แบบละเอียด
@@ -261,9 +338,9 @@ const getFinalResultKey = () => {
     const riskScore = answers.reduce((sum, ans) => sum + ans.risk, 0);
     const discScore = answers.reduce((sum, ans) => sum + ans.disc, 0);
     
-    // เกณฑ์สำหรับ 10 ข้อ (เต็ม 10 คะแนน)
-    const r = riskScore <= 3.5 ? "LOW" : riskScore <= 6.5 ? "MID" : "HIGH";
-    const d = discScore <= 3.5 ? "LOW" : discScore <= 6.5 ? "MID" : "HIGH";
+    // ✨ ปรับเกณฑ์ใหม่เหมือนใน handleChoice
+    const r = riskScore <= 4.0 ? "LOW" : riskScore < 6.0 ? "MID" : "HIGH";
+    const d = discScore <= 4.0 ? "LOW" : discScore < 6.0 ? "MID" : "HIGH";
     
     return `${r}_RISK_${d}_DISC`;
   };
