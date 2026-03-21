@@ -449,7 +449,7 @@ const getMatrixClass = (key: string) => {
               </div>
               <div className="w-full space-y-4 mb-2">
                 <input type="text" placeholder="พิมพ์ชื่อเล่นของคุณ..." value={nickname} onChange={(e) => setNickname(e.target.value)} className="w-full px-5 py-4 rounded-xl border border-stone-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none text-center font-semibold text-stone-800 transition-all bg-white/80 backdrop-blur-sm shadow-inner" />
-                <button onClick={handleStart} className="w-full bg-gradient-to-r from-stone-900 to-stone-800 hover:from-black hover:to-stone-900 text-amber-400 font-bold py-4 rounded-xl shadow-xl transition-all active:scale-95 border border-stone-700 tracking-wide">🧭 พิกัดตัวตนการเงิน</button>
+                <button onClick={handleStart} className="w-full bg-gradient-to-r from-stone-900 to-stone-800 hover:from-black hover:to-stone-900 text-amber-400 font-bold py-4 rounded-xl shadow-xl transition-all active:scale-95 border border-stone-700 tracking-wide">🌍 เปิดโลกการเงิน</button>
               </div>
               <DisclaimerFooter />
               <div className="mt-6 text-center text-[10px] font-medium text-stone-500/70 uppercase tracking-widest">
@@ -581,7 +581,7 @@ const getMatrixClass = (key: string) => {
      {/* 🌍 เปิดโลกการเงิน + 🎭 ตัวตนรอง */}
                   <div className="bg-white p-5 rounded-2xl shadow-sm border border-stone-100 mb-4 overflow-hidden text-center">
                     <h3 className="font-bold text-stone-800 mb-4 text-[13px] border-b border-stone-100 pb-3 flex items-center justify-between w-full">
-                      <div className="flex items-center gap-2"><span className="text-[16px]">🌍</span> เปิดโลกการเงิน</div>
+                      <div className="flex items-center gap-2"><span className="text-[16px]">🧭</span> พิกัดตัวตนการเงิน</div>
                       <button onClick={() => setShowInfo(true)} className="flex items-center gap-1 text-[10px] text-amber-600 bg-amber-50 px-2 py-1 rounded-full border border-amber-200 hover:bg-amber-100 transition-colors font-medium active:scale-95"><Info size={12} /></button>
                     </h3>
                     
