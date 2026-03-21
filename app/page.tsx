@@ -73,7 +73,7 @@ const jargonDict = [
   { keywords: ["compound effect", "ทบต้น"], word: "Compound Effect (ดอกเบี้ยทบต้น)", desc: "กลไกที่ผลกำไรหรือดอกเบี้ยที่ได้รับ ถูกนำไปลงทุนทบกับเงินต้นเดิมซ้ำๆ ทำให้ฐานเงินทุนใหญ่ขึ้นและเกิดการขยายตัวแบบทวีคูณเมื่อเวลาผ่านไป" },
   { keywords: ["dca"], word: "DCA (Dollar Cost Averaging)", desc: "กลยุทธ์การทยอยลงทุนด้วยจำนวนเงินที่เท่าๆ กันอย่างสม่ำเสมอตามรอบเวลาที่กำหนด เพื่อถัวเฉลี่ยต้นทุนโดยไม่ใช้การจับจังหวะตลาด" },
   { keywords: ["asset allocation"], word: "Asset Allocation (การจัดสรรสินทรัพย์)", desc: "กระบวนการจัดสรรและกระจายเงินทุนไปยังกลุ่มสินทรัพย์ที่หลากหลาย (เช่น หุ้น ตราสารหนี้ เงินฝาก) ตามสัดส่วนของแผนการลงทุนเพื่อลดความผันผวน" },
-  { keywords: ["passive income"], word: "Passive Income (รายได้แบบไม่ต้องลงแรง)", desc: "รูปแบบรายได้ที่เกิดขึ้นอย่างต่อเนื่องจากสินทรัพย์หรือระบบที่สร้างไว้ โดยลดทอนความจำเป็นที่จะต้องใช้แรงงานและเวลาเข้าไปแลกโดยตรง" },
+  { keywords: ["passive income"], word: "Passive Income (รายได้ที่ให้ระบบหรือทรัพย์สินทำงาน)", desc: "รูปแบบรายได้ที่เกิดขึ้นอย่างต่อเนื่องจากสินทรัพย์หรือระบบที่สร้างไว้ โดยลดทอนความจำเป็นที่จะต้องใช้แรงงานและเวลาเข้าไปแลกโดยตรง" },
   { keywords: ["cashflow", "กระแสเงินสด"], word: "Cashflow (กระแสเงินสด)", desc: "การไหลเข้าและออกของเงิน การมีกระแสเงินสดบวก (Positive Cashflow) หมายถึงสภาวะที่มีรายรับหมุนเวียนเข้ามามากกว่ารายจ่าย" },
   { keywords: ["capital gain", "ส่วนต่างราคา"], word: "Capital Gain (กำไรจากส่วนต่างราคา)", desc: "กำไรที่เกิดจากมูลค่าของสินทรัพย์ที่ปรับตัวเพิ่มขึ้นเมื่อเทียบกับต้นทุนเริ่มต้นที่ซื้อมา" },
   { keywords: ["yield", "อัตราผลตอบแทน"], word: "Yield (ผลตอบแทน)", desc: "อัตราส่วนที่แสดงถึงผลตอบแทนหรือกระแสเงินสดที่เกิดจากการถือครองสินทรัพย์ เช่น เงินปันผลจากหุ้น หรือรายได้ค่าเช่า" },
@@ -197,7 +197,12 @@ const jargonDict = [
   { keywords: ["burnout", "หมดไฟ", "ภาวะหมดไฟ"], word: "Burnout Syndrome (ภาวะหมดไฟ)", desc: "ภาวะเหนื่อยล้าทางอารมณ์และจิตใจอย่างรุนแรงอันเกิดจากความเครียดสะสมจากการทำงานหรือทำสิ่งใดสิ่งหนึ่งหนักเกินไป จนส่งผลให้หมดแรงจูงใจ" },
   { keywords: ["reskill", "รีสกิล", "อัปสกิลอาชีพ"], word: "Reskill (การสร้างทักษะใหม่)", desc: "กระบวนการเรียนรู้ทักษะใหม่ๆ ที่แตกต่างไปจากความถนัดเดิมอย่างสิ้นเชิง เพื่อปรับตัวให้เข้ากับเทคโนโลยี สายงานใหม่ หรือเพิ่มโอกาสในการหารายได้" },
   { keywords: ["track record", "ประวัติผลงาน", "แทรคเรคคอร์ด"], word: "Track Record (ประวัติผลการดำเนินงาน)", desc: "สถิติหรือผลงานในอดีตที่ผ่านมา ซึ่งถูกบันทึกไว้เป็นหลักฐานเพื่อใช้ประเมินความเชี่ยวชาญ ความน่าเชื่อถือ หรือความสม่ำเสมอของผลตอบแทน" },
-  { keywords: ["watchlist", "วอชลิสต์"], word: "Watchlist (รายการที่เฝ้าติดตาม)", desc: "รายการสินทรัพย์หรือหุ้นที่นักลงทุนได้ทำการศึกษาข้อมูลพื้นฐานไว้แล้ว และจดบันทึกไว้เพื่อเฝ้าติดตามราคา รอจังหวะที่เหมาะสมในการเข้าลงทุน" }
+  { keywords: ["watchlist", "วอชลิสต์"], word: "Watchlist (รายการที่เฝ้าติดตาม)", desc: "รายการสินทรัพย์หรือหุ้นที่นักลงทุนได้ทำการศึกษาข้อมูลพื้นฐานไว้แล้ว และจดบันทึกไว้เพื่อเฝ้าติดตามราคา รอจังหวะที่เหมาะสมในการเข้าลงทุน" },
+  { 
+    keywords: ["prenup", "สัญญาก่อนสมรส", "ทรัพย์สินก่อนแต่ง"], 
+    word: "Prenup (สัญญาก่อนสมรส)", 
+    desc: "ข้อตกลงทางกฎหมายที่ทำขึ้นก่อนการจดทะเบียนสมรส เพื่อระบุการจัดการและแบ่งแยกทรัพย์สินของแต่ละฝ่ายให้ชัดเจน ช่วยป้องกันปัญหาข้อพิพาทและคุ้มครองสินเดิมของตนเองในกรณีที่ความสัมพันธ์สิ้นสุดลง" 
+  }
 ];
 
 const levelMapping = {
@@ -587,16 +592,37 @@ export default function Home() {
       </div>
 
       {/* --- POPUPS --- */}
+     {/* === POPUP 9 DNA === */}
       <AnimatePresence>
         {showInfo && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 z-50 bg-stone-950/60 backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setShowInfo(false)}>
-            <motion.div initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="bg-[#FCFBF8] w-full max-w-[340px] max-h-[85vh] rounded-3xl shadow-2xl overflow-hidden flex flex-col" onClick={e => e.stopPropagation()}>
-              <div className="bg-stone-900 text-amber-400 p-4 flex justify-between items-center shrink-0"><h3 className="font-bold text-[14px] flex items-center gap-2"><Info size={16}/> 9 AVATAR ทางการเงิน</h3><button onClick={() => setShowInfo(false)} className="bg-stone-800 p-1.5 rounded-full hover:bg-stone-700 transition"><X size={16}/></button></div>
-              <div className="overflow-y-auto p-4 space-y-4">
+          // เปลี่ยนจาก absolute เป็น fixed และให้ inset-0 ทำงานเต็มหน้าจอ
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            exit={{ opacity: 0 }} 
+            className="fixed inset-0 z-[100] bg-stone-950/80 backdrop-blur-md flex items-center justify-center p-4" 
+            onClick={() => setShowInfo(false)}
+          >
+            <motion.div 
+              initial={{ scale: 0.9, y: 20 }} 
+              animate={{ scale: 1, y: 0 }} 
+              exit={{ scale: 0.9, y: 20 }} 
+              className="bg-[#FCFBF8] w-full max-w-[360px] max-h-[80vh] rounded-[2rem] shadow-2xl overflow-hidden flex flex-col border border-stone-200" 
+              onClick={e => e.stopPropagation()}
+            >
+              <div className="bg-stone-900 text-amber-400 p-5 flex justify-between items-center shrink-0">
+                <h3 className="font-bold text-[15px] flex items-center gap-2"><Info size={18}/> 9 AVATAR ทางการเงิน</h3>
+                <button onClick={() => setShowInfo(false)} className="bg-stone-800 p-2 rounded-full hover:bg-stone-700 transition-all active:scale-90 text-stone-400"><X size={20}/></button>
+              </div>
+              <div className="overflow-y-auto p-5 space-y-4">
                 {Object.values(resultData).map((type, idx) => (
-                  <div key={idx} className="bg-white p-4 rounded-xl border border-stone-200 flex items-start gap-3 shadow-sm">
-                    <div className="text-3xl mt-0.5 shrink-0">{type.emoji}</div>
-                    <div><p className={`font-bold text-[13px] ${type.titleColor}`}>{type.title}</p><p className="text-[11px] text-stone-500 font-medium mb-1.5">{type.subtitle}</p><p className="text-[11px] text-stone-600 leading-relaxed font-light">{type.desc}</p></div>
+                  <div key={idx} className="bg-white p-4 rounded-2xl border border-stone-100 flex items-start gap-4 shadow-sm hover:border-amber-200 transition-colors">
+                    <div className="text-4xl mt-1 shrink-0">{type.emoji}</div>
+                    <div>
+                      <p className={`font-bold text-[14px] ${type.titleColor}`}>{type.title}</p>
+                      <p className="text-[11px] text-stone-400 font-medium mb-2 uppercase tracking-tight">{type.subtitle}</p>
+                      <p className="text-[12px] text-stone-600 leading-relaxed font-light">{type.desc}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -605,17 +631,56 @@ export default function Home() {
         )}
       </AnimatePresence>
 
+      {/* === POPUP คลังศัพท์การเงิน === */}
       <AnimatePresence>
         {showJargon && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 z-50 bg-stone-950/70 backdrop-blur-md flex items-center justify-center p-4" onClick={() => setShowJargon(false)}>
-            <motion.div initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="bg-white w-full max-w-[320px] max-h-[70vh] rounded-3xl shadow-2xl overflow-hidden flex flex-col border-2 border-sky-100" onClick={e => e.stopPropagation()}>
-              <div className="bg-sky-50 text-sky-800 p-4 flex justify-between items-center shrink-0 border-b border-sky-100"><h3 className="font-bold text-[14px] flex items-center gap-2"><BookOpen size={16} className="text-sky-600"/> คลังศัพท์น่ารู้</h3><button onClick={() => setShowJargon(false)} className="bg-white p-1.5 rounded-full hover:bg-sky-100 text-sky-600 transition"><X size={16}/></button></div>
-              <div className="overflow-y-auto p-5 space-y-4">
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            exit={{ opacity: 0 }} 
+            className="fixed inset-0 z-[100] bg-stone-950/85 backdrop-blur-md flex items-center justify-center p-4" 
+            onClick={() => setShowJargon(false)}
+          >
+            <motion.div 
+              initial={{ scale: 0.9, y: 20 }} 
+              animate={{ scale: 1, y: 0 }} 
+              exit={{ scale: 0.9, y: 20 }} 
+              className="bg-white w-full max-w-[340px] max-h-[75vh] rounded-[2rem] shadow-2xl overflow-hidden flex flex-col border-2 border-sky-100" 
+              onClick={e => e.stopPropagation()}
+            >
+              <div className="bg-sky-50 text-sky-800 p-5 flex justify-between items-center shrink-0 border-b border-sky-100">
+                <h3 className="font-bold text-[15px] flex items-center gap-2"><BookOpen size={18} className="text-sky-600"/> คลังศัพท์น่ารู้</h3>
+                <button onClick={() => setShowJargon(false)} className="bg-white p-2 rounded-full hover:bg-sky-100 text-sky-400 transition-all active:scale-90"><X size={20}/></button>
+              </div>
+              <div className="overflow-y-auto p-6 space-y-5">
                 {activeJargons.length > 0 ? (
-                  <>{activeJargons.map((jargon, idx) => (<div key={idx} className="bg-stone-50 p-3.5 rounded-xl border border-stone-200"><p className="font-bold text-[13px] text-stone-800 mb-1">{jargon.word}</p><p className="text-[12px] text-stone-600 leading-relaxed font-light">{jargon.desc}</p></div>))}</>
+                  <div className="space-y-4">
+                    <p className="text-[11px] font-bold text-sky-500 uppercase tracking-widest mb-1">ศัพท์ที่เกี่ยวข้องในขณะนี้</p>
+                    {activeJargons.map((jargon, idx) => (
+                      <div key={idx} className="bg-sky-50/30 p-4 rounded-2xl border border-sky-100">
+                        <p className="font-bold text-[14px] text-stone-800 mb-1.5">{jargon.word}</p>
+                        <p className="text-[13px] text-stone-600 leading-relaxed font-light">{jargon.desc}</p>
+                      </div>
+                    ))}
+                  </div>
                 ) : (
-                  <div className="text-center py-6"><div className="text-4xl mb-2">🤷‍♂️</div><p className="font-bold text-stone-700 text-[14px]">ข้อนี้ไม่มีศัพท์ยาก</p></div>
+                  <div className="text-center py-10">
+                    <div className="text-5xl mb-4">📖</div>
+                    <p className="font-bold text-stone-700 text-[15px]">ไม่มีคลังศัพท์น่ารู้ในข้อนี้</p>
+                    <p className="text-[12px] text-stone-500 font-light mt-2 px-4">อ่านแล้วลุยตอบตามสัญชาตญาณได้เลย!</p>
+                  </div>
                 )}
+                
+                {/* ศัพท์เพิ่มเติม (แสดงเสมอเพื่อให้ดูมีคอนเทนต์) */}
+                <div className="pt-6 border-t border-stone-100">
+                  <p className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-4">ศัพท์การเงินอื่นๆ ที่น่าสนใจ</p>
+                  {jargonDict.filter(j => !activeJargons.includes(j)).slice(0, 2).map((jargon, idx) => (
+                    <div key={idx} className="mb-4 last:mb-0">
+                      <p className="font-bold text-[13px] text-stone-700 mb-1">{jargon.word}</p>
+                      <p className="text-[12px] text-stone-500 font-light leading-snug">{jargon.desc}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </motion.div>
