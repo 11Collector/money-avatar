@@ -101,7 +101,7 @@ const jargonDict = [
   { keywords: ["cut loss", "คัทลอส"], word: "Cut Loss (ตัดขาดทุน)", desc: "การตัดสินใจขายสินทรัพย์ออกมาในระดับราคาที่ต่ำกว่าทุน เพื่อจำกัดเพดานการขาดทุนไม่ให้เกินกว่าเกณฑ์หรือระบบที่ได้วางแผนไว้" },
   { keywords: ["profit run", "let profit run"], word: "Let Profit Run", desc: "กฎในการลงทุนที่เน้นการถือครองสินทรัพย์ที่กำลังอยู่ในสถานะมีกำไรต่อไปเรื่อยๆ ตราบใดที่แนวโน้มของราคายังคงดำเนินไปในทิศทางนั้น" },
   { keywords: ["rebalancing", "rebalance"], word: "Rebalancing (การปรับสมดุลพอร์ต)", desc: "กระบวนการปรับสัดส่วนพอร์ตการลงทุนให้กลับมาอยู่ในเกณฑ์ที่ตั้งใจไว้ เช่น การขายสินทรัพย์ที่มูลค่าเพิ่มขึ้นไปซื้อสินทรัพย์ที่สัดส่วนลดลง" },
-  { keywords: ["core port", "satellite port"], word: "Core Port & Satellite Port", desc: "กลยุทธ์การจัดพอร์ตโดยแบ่งเป็นพอร์ตหลัก (Core) สำหรับเป้าหมายหลัก และพอร์ตย่อย (Satellite) สำหรับจับจังหวะโอกาสเก็งกำไรระยะสั้น" },
+  { keywords: ["core port", "satellite port","พอร์ตหลัก", "พอร์ตย่อย"], word: "Core Port & Satellite Port", desc: "กลยุทธ์การจัดพอร์ตโดยแบ่งเป็นพอร์ตหลัก (Core) สำหรับเป้าหมายหลัก และพอร์ตย่อย (Satellite) สำหรับจับจังหวะโอกาสเก็งกำไรระยะสั้น" },
   { keywords: ["barbell", "บาร์เบล"], word: "Barbell Strategy (กลยุทธ์บาร์เบล)", desc: "กลยุทธ์การจัดพอร์ตแบบสุดโต่ง 2 ฝั่ง คือแบ่งเงินก้อนใหญ่ไว้ในสินทรัพย์ที่ปลอดภัยสุดๆ และเอาเงินก้อนเล็กไปเสี่ยงให้สุดขั้ว" },
   { keywords: ["trading plan", "แผนการเทรด"], word: "Trading Plan (แผนการเทรด)", desc: "แผนการที่กำหนดจุดซื้อ จุดขาย การจัดการความเสี่ยง และเป้าหมายกำไรอย่างชัดเจนอย่างเป็นระบบก่อนลงมือซื้อขายจริง" },
   { keywords: ["leverage", "มาร์จิ้น", "margin"], word: "Leverage / Margin (คานงัดการเงิน)", desc: "การใช้เครื่องมือทางการเงินหรือการกู้ยืมเพื่อเพิ่มกำลังซื้อในการลงทุน ทำให้ผลลัพธ์ของสัดส่วนทั้งกำไรและขาดทุนถูกขยายให้ใหญ่ขึ้น" },
@@ -144,7 +144,7 @@ const jargonDict = [
   { keywords: ["lifestyle creep", "ไลฟ์สไตล์", "กับดักไลฟ์สไตล์"], word: "Lifestyle Creep (กับดักไลฟ์สไตล์)", desc: "ปรากฏการณ์ที่มาตรฐานการใช้ชีวิตและรายจ่าย ค่อยๆ ขยับตัวสูงขึ้นตามรายได้ที่เพิ่มขึ้น ทำให้หาเงินได้เยอะแค่ไหนก็ไม่เหลือเก็บ" },
   { keywords: ["rat race", "สนามแข่งหนู"], word: "Rat Race (สนามแข่งหนู)", desc: "วงจรสถานะทางการเงินของวัยทำงานที่วนเวียนอยู่กับการทำงานหาเงินเพื่อนำไปชำระหนี้สินและค่าใช้จ่ายประจำเดือนต่อเดือน" },
   { keywords: ["ภาษีสังคม", "ซองงานแต่ง", "งานบวช"], word: "Social Tax (ภาษีสังคม)", desc: "ค่าใช้จ่ายทางอ้อมที่เกิดจากการเข้าร่วมกิจกรรมทางสังคม หรือการรักษาความสัมพันธ์ตามบรรทัดฐานของสังคม เช่น ใส่ซองงานแต่ง" },
-  { keywords: ["play money", "เงินเที่ยว"], word: "Play Money (กองทุนซื้อความสุข)", desc: "การแบ่งสัดส่วนเงินทุนไว้ต่างหาก สำหรับนำไปจัดสรรใช้จ่ายหรือซื้อประสบการณ์ตามความชอบ เพื่อไม่ให้งบไปกระทบกับพอร์ตเกษียณหลัก" },
+  { keywords: ["play money", "เงินเที่ยว", "งบเที่ยว"], word: "Play Money (กองทุนซื้อความสุข)", desc: "การแบ่งสัดส่วนเงินทุนไว้ต่างหาก สำหรับนำไปจัดสรรใช้จ่ายหรือซื้อประสบการณ์ตามความชอบ เพื่อไม่ให้งบไปกระทบกับพอร์ตเกษียณหลัก" },
   { keywords: ["e-saving", "ออมทรัพย์ดิจิทัล"], word: "e-Saving (ออมทรัพย์ดิจิทัล)", desc: "บัญชีเงินฝากออมทรัพย์รูปแบบดิจิทัล (เปิดผ่านแอป) ที่มักมีโครงสร้างอัตราดอกเบี้ยสูงกว่าบัญชีออมทรัพย์แบบมีสมุดคู่ฝากปกติ" },
   { keywords: ["rmf", "tesg", "ลดหย่อนภาษี", "ssf"], word: "RMF / TESG / SSF", desc: "กองทุนรวมที่ออกแบบมาเพื่อส่งเสริมการออมระยะยาว โดยภาครัฐให้สิทธิประโยชน์ในการนำยอดซื้อไปลดหย่อนภาษีตามเงื่อนไขที่กำหนด" },
   { keywords: ["refinance", "retention"], word: "Refinance / Retention", desc: "กระบวนการขอลดอัตราดอกเบี้ยสินเชื่อ (Refinance คือการรีไฟแนนซ์ย้ายไปธนาคารแห่งใหม่, Retention คือการขอลดอัตราดอกเบี้ยกับธนาคารเดิม)" },
@@ -202,6 +202,21 @@ const jargonDict = [
     keywords: ["prenup", "สัญญาก่อนสมรส", "ทรัพย์สินก่อนแต่ง"], 
     word: "Prenup (สัญญาก่อนสมรส)", 
     desc: "ข้อตกลงทางกฎหมายที่ทำขึ้นก่อนการจดทะเบียนสมรส เพื่อระบุการจัดการและแบ่งแยกทรัพย์สินของแต่ละฝ่ายให้ชัดเจน ช่วยป้องกันปัญหาข้อพิพาทและคุ้มครองสินเดิมของตนเองในกรณีที่ความสัมพันธ์สิ้นสุดลง" 
+  },
+  { 
+    keywords: ["10 เด้ง", "สิบเด้ง", "10-bagger", "สิบเท่า"], 
+    word: "10-Bagger (กำไร 10 เด้ง)", 
+    desc: "คำศัพท์ที่นักลงทุนใช้เรียกการลงทุนในสินทรัพย์ที่ราคาหรือมูลค่าปรับตัวเพิ่มขึ้นเป็น 10 เท่า (1,000%) จากต้นทุนเริ่มต้นที่ซื้อมา" 
+  },
+  { 
+    keywords: ["กงสี", "เงินกงสี", "family business"], 
+    word: "กงสี (กองทุนครอบครัว/ธุรกิจกงสี)", 
+    desc: "ระบบการเงินหรือธุรกิจของครอบครัว (มักพบในครอบครัวคนไทยเชื้อสายจีน) ที่นำรายได้มารวมเป็นกองกลาง เพื่อใช้เป็นค่าใช้จ่ายส่วนรวมหรือจัดสรรปันส่วนให้สมาชิกในตระกูล" 
+  },
+  { 
+    keywords: ["เงินเฟ้อ", "inflation"], 
+    word: "Inflation (เงินเฟ้อ)", 
+    desc: "ภาวะที่ระดับราคาสินค้าและบริการทั่วไปเพิ่มสูงขึ้นอย่างต่อเนื่อง ทำให้ 'อำนาจซื้อ' ของเงินลดลง (เงินเท่าเดิม แต่ซื้อของได้น้อยลง)" 
   }
 ];
 
@@ -511,19 +526,30 @@ export default function Home() {
                     <p className="text-[13px] text-stone-600 leading-relaxed font-light">{currentResult.desc}</p>
                   </div>
 
-                  {/* ✅ UI ใหม่: ตัวตนรองที่ซ่อนอยู่ */}
-                  {secondaryResult && (
-                    <div className="bg-gradient-to-br from-stone-50 to-white p-4 rounded-2xl shadow-sm border border-stone-100 mb-4 relative overflow-hidden">
-                      <div className="absolute top-0 right-0 bg-stone-200 text-stone-500 text-[9px] px-2 py-1 rounded-bl-lg font-bold">
-                        เหมือน {matchStats.secondary.matchPercentage}%
-                      </div>
-                      <p className="text-[10px] font-bold text-stone-400 uppercase tracking-widest flex items-center gap-1.5 mb-1.5">🎭 ตัวตนรองที่ซ่อนอยู่</p>
-                      <p className={`font-bold text-[14px] ${secondaryResult.titleColor} flex items-center gap-1`}>
-                        {secondaryResult.emoji} {secondaryResult.title}
-                      </p>
-                      <p className="text-[11px] text-stone-500 mt-1 line-clamp-2 leading-relaxed font-light">{secondaryResult.desc}</p>
-                    </div>
-                  )}
+                 {/* ✅ UI ใหม่: ตัวตนรองที่ซ่อนอยู่ */}
+{secondaryResult && (
+  <div className="bg-gradient-to-br from-stone-50 to-white p-4 rounded-2xl shadow-sm border border-stone-100 mb-4 relative overflow-hidden">
+    
+    {/* ป้าย % ความเหมือน */}
+    <div className="absolute top-0 right-0 bg-stone-200 text-stone-500 text-[9px] px-2 py-1 rounded-bl-lg font-bold">
+      เหมือน {matchStats.secondary.matchPercentage}%
+    </div>
+    
+    <p className="text-[10px] font-bold text-stone-400 uppercase tracking-widest flex items-center gap-1.5 mb-1.5">
+      🎭 ตัวตนรองที่ซ่อนอยู่
+    </p>
+    
+    <p className={`font-bold text-[14px] ${secondaryResult.titleColor} flex items-center gap-1`}>
+      {secondaryResult.emoji} {secondaryResult.title}
+    </p>
+    
+    {/* 👇 เอาคลาส line-clamp-2 ออกจากบรรทัดนี้แล้วครับ */}
+    <p className="text-[11px] text-stone-500 mt-1.5 leading-relaxed font-light pb-1">
+      {secondaryResult.desc}
+    </p>
+    
+  </div>
+)}
 
                   <div className="bg-white p-5 rounded-2xl shadow-sm border border-stone-100 mb-4 overflow-hidden text-center">
                     <h3 className="font-bold text-stone-800 mb-4 text-[13px] border-b border-stone-100 pb-3 flex items-center justify-between w-full">
