@@ -380,13 +380,15 @@ export default function Home() {
   const resetGame = () => {
     setNickname(""); setPersona(null); setAnswers([]); setGameState("start"); setMatrixRotation(0); setIsTransitioning(false);
   };
-
-  const getMatrixClass = (key: string) => {
+const getMatrixClass = (key: string) => {
     const isActive = matchStats?.primary.id === key;
-    return `h-10 rounded-lg flex justify-center items-center text-[10px] font-bold transition-all ${
+    
+    // 💡 ปรับลดขนาดลงเป็น text-[9px] (มือถือ) และ text-[9.5px] (จอใหญ่ขึ้น) 
+    // เพิ่ม px-1 และ text-center เผื่อคำยาวจะได้ไม่ชนขอบ
+    return `h-11 rounded-xl flex justify-center items-center text-[9px] sm:text-[9.5px] px-1 text-center transition-all ${
       isActive 
-      ? 'bg-amber-400 text-stone-900 shadow-md ring-2 ring-amber-500 scale-[1.08] z-10' 
-      : 'bg-white text-stone-400'
+      ? 'bg-amber-500 text-stone-900 font-bold shadow-md ring-[2px] ring-amber-500 scale-[1.08] z-10 tracking-tight' 
+      : 'bg-white text-stone-400 font-medium tracking-tight'
     }`;
   };
 
@@ -447,7 +449,7 @@ export default function Home() {
               </div>
               <div className="w-full space-y-4 mb-2">
                 <input type="text" placeholder="พิมพ์ชื่อเล่นของคุณ..." value={nickname} onChange={(e) => setNickname(e.target.value)} className="w-full px-5 py-4 rounded-xl border border-stone-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none text-center font-semibold text-stone-800 transition-all bg-white/80 backdrop-blur-sm shadow-inner" />
-                <button onClick={handleStart} className="w-full bg-gradient-to-r from-stone-900 to-stone-800 hover:from-black hover:to-stone-900 text-amber-400 font-bold py-4 rounded-xl shadow-xl transition-all active:scale-95 border border-stone-700 tracking-wide">🌍 เปิดโลกการเงิน</button>
+                <button onClick={handleStart} className="w-full bg-gradient-to-r from-stone-900 to-stone-800 hover:from-black hover:to-stone-900 text-amber-400 font-bold py-4 rounded-xl shadow-xl transition-all active:scale-95 border border-stone-700 tracking-wide">🧭 พิกัดตัวตนการเงิน</button>
               </div>
               <DisclaimerFooter />
               <div className="mt-6 text-center text-[10px] font-medium text-stone-500/70 uppercase tracking-widest">
@@ -536,11 +538,11 @@ export default function Home() {
                     {activeJargons.length > 0 && <span className="absolute -top-0.5 -right-0.5 bg-red-500 w-2.5 h-2.5 rounded-full border border-stone-900 animate-pulse shadow-sm"></span>}
                   </button>
                   <Trophy size={28} className="text-white/80 mb-2 mt-2 drop-shadow-md" />
-                  <p className="text-white/90 text-[10px] font-semibold tracking-widest uppercase mb-3 opacity-80">Financial Avatar</p>
+                  <p className="text-white/90 text-[10px] font-semibold tracking-widest uppercase mb-3 opacity-80">Money Avatar</p>
                   <p className="text-white/95 text-[11px] bg-black/25 px-4 py-1.5 rounded-full font-medium tracking-wide border border-white/10 backdrop-blur-sm">{currentResult.subtitle}</p>
                 </div>
 
-                <div className="p-5 pt-10 flex flex-col relative">
+           <div className="p-5 pt-10 flex flex-col relative">
                   <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-white text-5xl w-24 h-24 rounded-full flex items-center justify-center shadow-xl border-[4px] border-[#FCFBF8] z-10">
                     {currentResult.emoji}
                   </div>
@@ -548,7 +550,6 @@ export default function Home() {
                     <p className="text-stone-400 text-[11px] font-semibold tracking-widest uppercase mb-1">AVATAR การเงินของคุณ</p>
                     <h1 className="text-2xl font-black text-stone-900 leading-tight mb-1">{persona === "ไม่ระบุ" ? nickname : `${persona}${nickname}`}</h1>
                     <p className={`text-lg font-bold leading-tight ${currentResult.titleColor}`}>{currentResult.title}</p>
-                    {/* ✅ UI ใหม่: เปอร์เซ็นต์ความแม่นยำ */}
                     <div className="flex items-center justify-center mt-2">
                        <span className="bg-stone-100 text-stone-500 px-3 py-1 rounded-full text-[10px] font-bold border border-stone-200 shadow-sm">
                          ตรงกับคุณ {matchStats.primary.matchPercentage}%
@@ -556,40 +557,35 @@ export default function Home() {
                     </div>
                   </div>
                   
-                  <div className="bg-white p-5 rounded-2xl shadow-sm border border-stone-100 mb-4 text-center">
-                    <p className="text-[13px] text-stone-600 leading-relaxed font-light">{currentResult.desc}</p>
-                  </div>
+       {/* 1️⃣ จุดแข็ง / มุมมองต่อเงิน */}
+<div className="bg-white p-5 rounded-2xl shadow-sm border border-stone-100 mb-3 text-center">
+  <p className="text-[13px] text-stone-600 leading-relaxed font-light">
+    {/* ใช้ highlightText ตรงนี้ */}
+    {highlightText(currentResult.desc)}
+  </p>
+</div>
 
-                 {/* ✅ UI ใหม่: ตัวตนรองที่ซ่อนอยู่ */}
-{secondaryResult && (
-  <div className="bg-gradient-to-br from-stone-50 to-white p-4 rounded-2xl shadow-sm border border-stone-100 mb-4 relative overflow-hidden">
-    
-    {/* ป้าย % ความเหมือน */}
-    <div className="absolute top-0 right-0 bg-stone-200 text-stone-500 text-[9px] px-2 py-1 rounded-bl-lg font-bold">
-      เหมือน {matchStats.secondary.matchPercentage}%
-    </div>
-    
-    <p className="text-[10px] font-bold text-stone-400 uppercase tracking-widest flex items-center gap-1.5 mb-1.5">
-      🎭 ตัวตนรองที่ซ่อนอยู่
-    </p>
-    
-    <p className={`font-bold text-[14px] ${secondaryResult.titleColor} flex items-center gap-1`}>
-      {secondaryResult.emoji} {secondaryResult.title}
-    </p>
-    
-    {/* 👇 เอาคลาส line-clamp-2 ออกจากบรรทัดนี้แล้วครับ */}
-    <p className="text-[11px] text-stone-500 mt-1.5 leading-relaxed font-light pb-1">
-      {secondaryResult.desc}
-    </p>
-    
-  </div>
-)}
+{/* 2️⃣ หลุมพรางทางการเงิน */}
+<div className="bg-sky-50/60 border border-sky-100 p-4 rounded-2xl mb-4 shadow-sm relative overflow-hidden">
+  <div className="absolute top-0 left-0 w-1 h-full bg-sky-400"></div>
+  <p className="text-[11px] font-bold text-sky-600 mb-1.5 flex items-center gap-1.5 uppercase tracking-wide">
+    <Zap size={14} className="text-sky-500"/> หลุมพรางทางการเงิน
+  </p>
+  <p className="font-bold text-sky-900 text-[13px] mb-1">{currentResult.kryptonite.name}</p>
+  <p className="text-[12px] text-sky-800/80 leading-relaxed font-light">
+    {/* ใช้ highlightText ตรงนี้ และเปลี่ยนสีให้เข้ากับกล่องฟ้า */}
+    {highlightText(currentResult.kryptonite.desc, "font-bold text-sky-900 bg-sky-200/50 px-1 rounded-sm")}
+  </p>
+</div>
 
+     {/* 🌍 เปิดโลกการเงิน + 🎭 ตัวตนรอง */}
                   <div className="bg-white p-5 rounded-2xl shadow-sm border border-stone-100 mb-4 overflow-hidden text-center">
                     <h3 className="font-bold text-stone-800 mb-4 text-[13px] border-b border-stone-100 pb-3 flex items-center justify-between w-full">
                       <div className="flex items-center gap-2"><span className="text-[16px]">🌍</span> เปิดโลกการเงิน</div>
                       <button onClick={() => setShowInfo(true)} className="flex items-center gap-1 text-[10px] text-amber-600 bg-amber-50 px-2 py-1 rounded-full border border-amber-200 hover:bg-amber-100 transition-colors font-medium active:scale-95"><Info size={12} /></button>
                     </h3>
+                    
+                    {/* ตาราง 3x3 */}
                     <div className="flex flex-col items-center">
                       <div className="flex w-full justify-center pl-4 pr-1">
                         <div className="relative w-8 flex justify-center items-center mr-1.5 shrink-0">
@@ -609,27 +605,47 @@ export default function Home() {
                           <div className={getMatrixClass('LOW_RISK_HIGH_DISC')}>พิทักษ์เงินฝาก</div>
                         </motion.div>
                       </div>
-                      <div className="flex justify-between w-full max-w-[260px] mt-2 px-2 text-[9px] font-semibold text-stone-400 uppercase tracking-widest ml-6">
-                        <span>ใช้ตามฟีล</span><span>มีระบบ (วินัย) ➔</span>
+                     {/* แกน X แนวนอน (ใช้ตามฟีล ➔ มีระบบ) */}
+                      <div className="flex justify-between items-center w-full max-w-[280px] mt-3 px-3 text-[10px] font-bold text-stone-400 tracking-widest ml-10">
+                        <span>💖 ใช้ตามฟีล</span>
+                        <span>➔</span>
+                        <span>มีระบบ ⚙️</span>
                       </div>
                     </div>
-                    <p className="text-[9px] text-stone-400 text-center mt-3 italic">ลองจิ้มที่ตารางเพื่อหมุนโลกการเงินดูสิ! 💫</p>
+                    <p className="text-[9px] text-stone-400 text-center mt-3 italic mb-1">ลองจิ้มที่ตารางเพื่อหมุนโลกการเงินดูสิ! 💫</p>
+
+                    {/* ตัวตนรอง (ย้ายมาต่อท้ายตารางแบบมินิมอล) */}
+                    {secondaryResult && (
+                      <div className="mt-4 pt-4 border-t border-stone-100 flex items-center justify-between">
+                        <div className="flex flex-col items-start text-left">
+                          <p className="text-[9px] font-bold text-stone-400 uppercase tracking-widest flex items-center gap-1 mb-1">
+                            🎭 ตัวตนรองที่ซ่อนอยู่
+                          </p>
+                          <p className={`font-bold text-[13px] ${secondaryResult.titleColor} flex items-center gap-1`}>
+                            {secondaryResult.emoji} {secondaryResult.title}
+                          </p>
+                        </div>
+                        <div className="bg-stone-50 text-stone-500 text-[10px] px-2.5 py-1.5 rounded-lg font-bold border border-stone-200 shadow-sm shrink-0">
+                          เหมือน {matchStats.secondary.matchPercentage}%
+                        </div>
+                      </div>
+                    )}
                   </div>
 
+               {/* 5️⃣ แผนอัปสกิลพอร์ต */}
                   <div className="bg-white p-5 rounded-2xl shadow-sm border border-stone-100 mb-4">
                     <h3 className="font-bold text-stone-800 mb-4 text-[13px] border-b border-stone-100 pb-3 flex items-center gap-2"><span className="text-[16px]">🎯</span> แผนอัปสกิลพอร์ต</h3>
-                    <div className="bg-stone-50 border border-stone-200 p-4 rounded-xl mb-3">
+                    <div className="bg-stone-50 border border-stone-200 p-4 rounded-xl">
                       <p className="text-[11px] font-bold text-stone-500 mb-1.5 flex items-center gap-1.5 uppercase tracking-wide"><Target size={14} className="text-amber-500"/> คำแนะนำเชิงกลยุทธ์</p>
                       <p className="font-bold text-stone-800 text-[13px] mb-1">{currentResult.bestPartner.name}</p>
-                      <p className="text-[11px] text-stone-500 leading-relaxed font-light">{currentResult.bestPartner.desc}</p>
-                    </div>
-                    <div className="bg-sky-50/50 border border-sky-100 p-4 rounded-xl">
-                      <p className="text-[11px] font-bold text-sky-500 mb-1.5 flex items-center gap-1.5 uppercase tracking-wide"><Zap size={14} className="text-sky-500"/> หลุมพรางทางการเงิน</p>
-                      <p className="font-bold text-sky-800 text-[13px] mb-1">{currentResult.kryptonite.name}</p>
-                      <p className="text-[11px] text-sky-700/80 leading-relaxed font-light">{currentResult.kryptonite.desc}</p>
+                      <p className="text-[12px] text-stone-600 leading-relaxed font-light">
+                        {/* 💡 เรียกใช้ highlightText พร้อมสีเหลืองทอง ให้ดูเป็น Action Plan ที่น่าทำตาม */}
+                        {highlightText(currentResult.bestPartner.desc, "font-bold text-amber-900 bg-amber-200/50 px-1 rounded-sm")}
+                      </p>
                     </div>
                   </div>
 
+                  {/* 6️⃣ เครื่องมืออัปสกิลอื่นๆ */}
                   <div className="flex flex-col items-center justify-center gap-2 mb-4">
                     <p className="text-[9px] font-bold text-stone-400 uppercase tracking-widest flex items-center gap-2"><span className="w-8 h-px bg-stone-200"></span>เครื่องมืออัปสกิลอื่นๆ<span className="w-8 h-px bg-stone-200"></span></p>
                     <div className="flex items-center justify-center gap-2 w-full">
@@ -681,7 +697,9 @@ export default function Home() {
                     <div>
                       <p className={`font-bold text-[14px] ${type.titleColor}`}>{type.title}</p>
                       <p className="text-[11px] text-stone-400 font-medium mb-2 uppercase tracking-tight">{type.subtitle}</p>
-                      <p className="text-[12px] text-stone-600 leading-relaxed font-light">{type.desc}</p>
+                     <p className="text-[12px] text-stone-600 leading-relaxed font-light">
+   {highlightText(type.desc, "font-bold text-stone-800 bg-amber-100/60 px-1 rounded-sm")}
+</p>
                     </div>
                   </div>
                 ))}
@@ -750,3 +768,18 @@ export default function Home() {
     </div>
   );
 }
+
+// ฟังก์ชันสำหรับแปลง **ข้อความ** ให้เป็นตัวหนาและมีสีไฮไลท์
+const highlightText = (text: string, colorClass: string = "font-bold text-stone-900 bg-amber-100/60 px-1 rounded-md") => {
+  if (!text) return null;
+  const parts = text.split(/\*\*(.*?)\*\*/g);
+  return parts.map((part, index) => 
+    index % 2 === 1 ? (
+      <span key={index} className={colorClass}>
+        {part}
+      </span>
+    ) : (
+      part
+    )
+  );
+};
