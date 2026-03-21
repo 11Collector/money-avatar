@@ -655,7 +655,7 @@ export default function Home() {
               <div className="overflow-y-auto p-6 space-y-5">
                 {activeJargons.length > 0 ? (
                   <div className="space-y-4">
-                    <p className="text-[11px] font-bold text-sky-500 uppercase tracking-widest mb-1">ศัพท์ที่เกี่ยวข้องในขณะนี้</p>
+                    <p className="text-[11px] font-bold text-sky-500 uppercase tracking-widest mb-1">ศัพท์ที่เกี่ยวข้อง</p>
                     {activeJargons.map((jargon, idx) => (
                       <div key={idx} className="bg-sky-50/30 p-4 rounded-2xl border border-sky-100">
                         <p className="font-bold text-[14px] text-stone-800 mb-1.5">{jargon.word}</p>
