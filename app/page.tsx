@@ -804,7 +804,7 @@ const getCurrentJargons = () => {
     <Loader2 size={52} className="text-amber-500 animate-spin mb-6 z-10 drop-shadow-[0_0_15px_rgba(245,158,11,0.4)]" />
     
     <h2 className="text-xl font-bold text-white mb-2 text-center tracking-wide z-10">กำลังประมวลผล...</h2>
-    <p className="text-stone-400 text-[13px] text-center font-light mb-12 z-10">สแกนพฤติกรรมและจิตวิทยาการเงินของคุณ 📉📈</p>
+    <p className="text-stone-400 text-[13px] text-center font-light mb-12 z-10">สแกน AVATAR การเงินของคุณ 📉📈</p>
 
     {/* กรอบโชว์ Quote */}
     <motion.div 
