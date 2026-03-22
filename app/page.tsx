@@ -14,6 +14,189 @@ import { resultData } from "../src/data/resultData";
 import DisclaimerFooter from '../app/components/DisclaimerFooter';
 import { db } from "../src//lib/firebaseConfig"; 
 
+const loadingQuotes = [
+  {
+    text: "การประสบความสำเร็จทางการเงิน ไม่ได้เกี่ยวกับความฉลาด แต่อยู่ที่ 'พฤติกรรม' ของคุณ",
+    author: "Morgan Housel",
+    book: "The Psychology of Money"
+  },
+  {
+    text: "ความมั่งคั่ง คือการมีสินทรัพย์ที่ทำเงินให้คุณ... แม้ในยามที่คุณหลับ",
+    author: "Naval Ravikant",
+    book: "The Almanack of Naval Ravikant"
+  },
+  {
+    text: "ตลาดหุ้นคือเครื่องมือ ย้ายเงินจาก 'คนใจร้อน' ไปสู่ 'คนใจเย็น'",
+    author: "Warren Buffett",
+    book: "Legendary Investor"
+  },
+  {
+    text: "การเงินส่วนบุคคล เป็นเรื่องของจิตวิทยา 80% และกลไกตัวเลขแค่ 20%",
+    author: "Dave Ramsey",
+    book: "Personal Finance Expert"
+  },
+  // --- Charlie Munger (Legendary Investor) ---
+  {
+    text: "เงินก้อนโตไม่ได้เกิดจากการ 'ซื้อๆ ขายๆ' แต่เกิดจากการ 'รอคอย' ให้เป็น",
+    author: "Charlie Munger",
+    book: "Legendary Investor"
+  },
+{
+    text: "คนทั่วไป 'ทำงานเพื่อเงิน' แต่คนรวยสร้างระบบให้ 'เงินทำงาน' แทนพวกเขา",
+    author: "Robert Kiyosaki",
+    book: "Rich Dad Poor Dad"
+  },// --- Darren Hardy (The Compound Effect) ---
+  {
+    text: "ทางเลือกเล็กๆ ที่ชาญฉลาด + 'ความสม่ำเสมอ' + เวลา = ผลลัพธ์ที่ยิ่งใหญ่มหาศาล",
+    author: "Darren Hardy",
+    book: "The Compound Effect"
+  },
+  // --- Dan Sullivan & Dr. Benjamin Hardy (The Gap and The Gain) ---
+  {
+    text: "จงวัดความสำเร็จจาก 'สิ่งที่คุณทำได้แล้ว' ไม่ใช่จากช่องว่างของ 'สิ่งที่คุณยังไม่มี'",
+    author: "Dr. Benjamin Hardy",
+    book: "The Gap and The Gain"
+  },
+  // --- Peter Lynch (One Up On Wall Street) ---
+  {
+    text: "กลไกที่สำคัญที่สุดในการลงทุน ไม่ใช่สมอง... แต่คือ 'กระเพาะ' ที่ทนความเหวี่ยงได้",
+    author: "Peter Lynch",
+    book: "Legendary Fund Manager"
+  },
+  // --- Benjamin Graham (บิดาแห่งการลงทุนแบบเน้นคุณค่า) ---
+  {
+    text: "ศัตรูตัวฉกาจที่สุดของนักลงทุน... มักจะไม่ใช่ตลาด แต่เป็น 'ตัวของเขาเอง'",
+    author: "Benjamin Graham",
+    book: "The Intelligent Investor"
+  },
+
+  // --- James Clear (ปรมาจารย์ด้านการสร้างนิสัย) ---
+  {
+    text: "คุณไม่มีทางไปถึงระดับของเป้าหมายได้ คุณทำได้แค่ร่วงหล่นลงมาสู่ 'ระดับของระบบ' ที่คุณสร้างไว้",
+    author: "James Clear",
+    book: "Atomic Habits"
+  },
+
+  // --- George Soros (พ่อมดการเงินสายเก็งกำไร) ---
+  {
+    text: "สิ่งสำคัญไม่ใช่ถูกหรือผิด แต่อยู่ที่ตอนถูกคุณ 'ได้เท่าไหร่' และตอนผิดคุณ 'จำกัดความเสียหาย' ได้แค่ไหน",
+    author: "George Soros",
+    book: "Legendary Investor"
+  },
+
+  // --- Jim Rohn (นักปรัชญาธุรกิจ) ---
+  {
+    text: "การศึกษาในระบบจะทำให้คุณพอมีกิน แต่การ 'ศึกษาเรียนรู้ด้วยตัวเอง' จะทำให้คุณมั่งคั่ง",
+    author: "Jim Rohn",
+    book: "Business Philosopher"
+  },
+
+  // --- Bill Perkins (ผู้เขียนเรื่องการใช้เงินให้คุ้มค่า - ตรงกับข้อ 86 ในแอปคุณพอดี!) ---
+  {
+    text: "เป้าหมายไม่ใช่การกอดเงินให้ตายไปพร้อมกัน แต่คือการเปลี่ยนเงินเป็น 'ประสบการณ์ชีวิต' ในเวลาที่เหมาะสม",
+    author: "Bill Perkins",
+    book: "Dying with Zero"
+  },
+
+  // --- Jon Acuff (เรื่องการจัดการเสียงในหัว) ---
+  {
+    text: "การคิดมากเกินไป (Overthinking) คือจังหวะที่ 'ความกลัว' เข้ามาขวางทาง 'สิ่งที่คุณต้องการ' จริงๆ",
+    author: "Jon Acuff",
+    book: "Soundtracks"
+  },
+  // --- Ray Dalio (มหาเศรษฐีเจ้าของกองทุน Hedge Fund ที่ใหญ่ที่สุดในโลก) ---
+  {
+    text: "ความเจ็บปวดจากการขาดทุน + 'การทบทวนตัวเอง' = ความก้าวหน้าที่แท้จริง",
+    author: "Ray Dalio",
+    book: "Principles"
+  },
+
+  // --- Mark Douglas (บิดาแห่งจิตวิทยาการเทรด) ---
+  {
+    text: "ถ้าคุณสร้าง 'สภาวะจิตใจ' ที่ไม่หวั่นไหวไปตามตลาดได้ ความยากลำบากในการลงทุนก็จะหายไป",
+    author: "Mark Douglas",
+    book: "Trading in the Zone"
+  },
+
+  // --- Cal Newport (ปรมาจารย์ด้านการทำงานแบบโฟกัส) ---
+  {
+    text: "ความสามารถในการ 'จดจ่อขั้นสุด' (Deep Work) คือทักษะที่มีมูลค่ามหาศาลที่สุด ในยุคที่เต็มไปด้วยสิ่งรบกวน",
+    author: "Cal Newport",
+    book: "Deep Work"
+  },
+
+  // --- Nassim Nicholas Taleb (ปรมาจารย์ด้านความเสี่ยงและ Black Swan) ---
+  {
+    text: "สิ่งที่เสพติดและอันตรายต่ออิสรภาพที่สุดมี 3 อย่าง คือ เฮโรอีน, คาร์โบไฮเดรต และ 'เงินเดือนประจำ'",
+    author: "Nassim Nicholas Taleb",
+    book: "The Bed of Procrustes"
+  },
+
+  // --- Carl Richards (นักวางแผนการเงินสายพฤติกรรม) ---
+  {
+    text: "'ความเสี่ยง' คือสิ่งที่หลงเหลืออยู่... หลังจากที่คุณมั่นใจว่า คุณคิดมาดีหมดทุกอย่างแล้ว",
+    author: "Carl Richards",
+    book: "The Behavior Gap"
+  },
+
+  // --- Peter Thiel (ผู้ร่วมก่อตั้ง PayPal และนักลงทุนระดับตำนาน) ---
+  {
+    text: "สิ่งที่สวนกระแสที่สุด ไม่ใช่การทำตัวขวางโลก แต่คือการ 'คิดด้วยหัวของตัวเอง'",
+    author: "Peter Thiel",
+    book: "Zero to One"
+  },
+
+  // --- Seth Klarman (นักลงทุนเน้นคุณค่าชื่อดัง) ---
+  {
+    text: "การลงทุน ไม่ใช่แค่เรื่องของตัวเลข แต่มันคือจุดตัดระหว่าง 'เศรษฐศาสตร์' และ 'จิตวิทยามนุษย์'",
+    author: "Seth Klarman",
+    book: "Margin of Safety"
+  },
+  // --- Daniel Kahneman (บิดาแห่งเศรษฐศาสตร์พฤติกรรม ผู้ล่วงลับ) ---
+  {
+    text: "ความเจ็บปวดจากการสูญเสียเงิน รุนแรงกว่าความสุขที่ได้เงินจำนวนเท่ากันถึง 'สองเท่า'",
+    author: "Daniel Kahneman",
+    book: "Thinking, Fast and Slow"
+  },
+
+  // --- Howard Marks (ปรมาจารย์ด้านการประเมินความเสี่ยง) ---
+  {
+    text: "ความเสี่ยงที่แท้จริงไม่ใช่ความผันผวนของราคา แต่คือการสูญเสียเงินทุนแบบ 'ถาวร'",
+    author: "Howard Marks",
+    book: "The Most Important Thing"
+  },
+
+  // --- Vicki Robin (หนังสือคัมภีร์ต้นตำรับสาย FIRE) ---
+  {
+    text: "เงินไม่ใช่แค่ตัวเลข แต่มันคือ 'พลังชีวิต' ที่คุณยอมสละเวลาไปแลกมา",
+    author: "Vicki Robin",
+    book: "Your Money or Your Life"
+  },
+
+  // --- Dr. Julie Smith (การจัดการอารมณ์ ซึ่งสำคัญมากเวลาตลาดผันผวน) ---
+  {
+    text: "ความคิดและอารมณ์ของคุณ 'ไม่ใช่ข้อเท็จจริง' เสมอไป โดยเฉพาะเวลาที่เห็นพอร์ตติดลบ",
+    author: "Dr. Julie Smith",
+    book: "Why Has Nobody Told Me This Before?"
+  },
+
+  // --- Simon Sinek (การมองภาพยาว) ---
+  {
+    text: "ความมั่งคั่งไม่ใช่เกมที่มีจุดจบ แต่คือ 'เกมอนันต์' (Infinite Game) ที่เป้าหมายคือการอยู่รอดให้นานที่สุด",
+    author: "Simon Sinek",
+    book: "The Infinite Game"
+  },
+
+  // --- Tim Ferriss (เรื่องการใช้ Leverage และเวลา) ---
+  {
+    text: "เป้าหมายไม่ใช่การทำงานให้หนักที่สุด แต่คือการหา 'คานงัด' ที่สร้างอิสรภาพให้คุณได้เร็วที่สุด",
+    author: "Tim Ferriss",
+    book: "The 4-Hour Workweek"
+  }
+];
+
+
+
 // --- 1. SETUP & UTILS ---
 const promptFont = Prompt({ 
   subsets: ["thai", "latin"], 
@@ -297,6 +480,13 @@ export default function Home() {
     return calculatePersona(finalRiskScore, finalDiscScore);
   }, [gameState, answers]);
 
+const randomQuote = useMemo(() => {
+    if (gameState === "loading") {
+      return loadingQuotes[Math.floor(Math.random() * loadingQuotes.length)];
+    }
+    return loadingQuotes[0];
+  }, [gameState]);
+
   const currentResult = matchStats ? resultData[matchStats.primary.id as keyof typeof resultData] : null;
   const secondaryResult = matchStats ? resultData[matchStats.secondary.id as keyof typeof resultData] : null;
 
@@ -355,10 +545,13 @@ export default function Home() {
       }).catch(error => console.error("❌ บันทึกล้มเหลว:", error));
 
       // หน่วงเวลา 600ms ให้ User เห็นหลอดสีวิ่งเต็ม 100% ฟินๆ ก่อนเปลี่ยนฉาก
-      setTimeout(() => {
+     setTimeout(() => {
         setIsTransitioning(false);
         setGameState("loading");
-        setTimeout(() => setGameState("result"), 2500);
+        
+        // 👇 ปรับตัวเลขตรงนี้ครับ เปลี่ยนจาก 2500 เป็น 4000 หรือ 4500
+        setTimeout(() => setGameState("result"), 4500); 
+        
       }, 600);
     }
   };
@@ -502,45 +695,58 @@ const getCurrentJargons = () => {
               <div className="flex items-center gap-1.5 shrink-0">
                 <div className="flex items-center gap-2.5 shrink-0 mr-1 sm:mr-3">
                   
-                  {/* 1. Progress Bar (ปรับให้มีไอคอนคนวิ่ง) */}
-                 {/* 1. Progress Bar (ปรับให้มีไอคอนเหรียญทอง) */}
-                  <div className="relative w-28 sm:w-36 flex items-center">
-                    <div className="w-full h-2.5 bg-stone-800 rounded-full overflow-hidden border border-stone-700/50 shadow-inner relative">
-                      <motion.div 
-                        className="absolute top-0 left-0 h-full bg-gradient-to-r from-amber-500 to-yellow-300"
-                        initial={{ width: '2%' }}
-                        animate={{ width: `${Math.max(2, (answers.length / TOTAL_QUESTIONS) * 100)}%` }}
-                        transition={{ duration: 0.4, ease: "easeOut" }}
-                      />
-                      <motion.div 
-                        className="absolute top-0 bottom-0 w-4 bg-white/30 blur-[2px]"
-                        initial={{ left: '-10%' }}
-                        animate={{ left: `calc(${Math.max(2, (answers.length / TOTAL_QUESTIONS) * 100)}% - 8px)` }}
-                        transition={{ duration: 0.4, ease: "easeOut" }}
-                      />
-                    </div>
-                    {/* ไอคอนเหรียญทอง */}
-                   {/* ไอคอนเหรียญทอง (เพิ่มเอฟเฟกต์หมุนและเด้ง) */}
-                {/* ไอคอนเหรียญทอง (แก้ Error Spring Keyframes) */}
-                    <motion.div
-                      className="absolute top-1/2 -translate-y-1/2 text-[18px] drop-shadow-md z-10"
-                      initial={{ left: '0%', rotate: 0 }}
-                      animate={{ 
-                        left: `calc(${Math.max(2, (answers.length / TOTAL_QUESTIONS) * 100)}% - 12px)`,
-                        rotate: answers.length * 360,
-                        scale: [1, 1.3, 1] // ให้มันเด้งขยายตัว
-                      }}
-                      transition={{ 
-                        // แยกการตั้งค่า: ให้ left กับ rotate เป็นสปริง
-                        left: { type: "spring", bounce: 0.4, duration: 0.5 },
-                        rotate: { type: "spring", bounce: 0.4, duration: 0.5 },
-                        // ส่วน scale ให้เป็นแบบปกติ (tween) เพื่อให้รองรับค่า [1, 1.3, 1]
-                        scale: { duration: 0.3 } 
-                      }}
-                    >
-                      💰
-                    </motion.div>
-                  </div>
+                 
+           
+  
+{/* Progress Bar Section */}
+<div className="relative w-28 sm:w-36 flex items-center pr-8"> {/* เพิ่ม pr นิดหน่อยเผื่อเหรียญชนถ้วยทอง */}
+  
+  {/* 👇 เพิ่ม Wrapper นี้ครอบหลอดและเหรียญไว้ด้วยกัน เพื่อให้อ้างอิงความกว้างเดียวกัน */}
+  <div className="relative w-full">
+    
+    {/* หลอด Progress */}
+    <div className="w-full h-2.5 bg-stone-800 rounded-full overflow-hidden border border-stone-700/50 shadow-inner relative">
+      <motion.div 
+        className="absolute top-0 left-0 h-full bg-gradient-to-r from-amber-500 to-yellow-300"
+        initial={{ width: '2%' }}
+        animate={{ width: `${Math.max(2, (answers.length / TOTAL_QUESTIONS) * 100)}%` }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+      />
+      <motion.div 
+        className="absolute top-0 bottom-0 w-4 bg-white/30 blur-[2px]"
+        initial={{ left: '-10%' }}
+        animate={{ left: `calc(${Math.max(2, (answers.length / TOTAL_QUESTIONS) * 100)}% - 8px)` }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+      />
+    </div>
+
+    {/* ไอคอนเหรียญทอง (ตัววิ่ง) */}
+    <motion.div
+      className="absolute top-1/2 -translate-y-1/2 text-[18px] drop-shadow-md z-10"
+      initial={{ left: '0%', rotate: 0 }}
+      animate={{ 
+        left: `calc(${Math.max(2, (answers.length / TOTAL_QUESTIONS) * 100)}% - 12px)`,
+        rotate: answers.length * 360,
+        scale: [1, 1.3, 1] 
+      }}
+      transition={{ 
+        left: { type: "spring", bounce: 0.4, duration: 0.5 },
+        rotate: { type: "spring", bounce: 0.4, duration: 0.5 },
+        scale: { duration: 0.3 } 
+      }}
+    >
+      💰
+    </motion.div>
+    
+  </div>
+  {/* 👆 จบ Wrapper ใหม่ */}
+
+  {/* Emoji เป้าหมายปลายทาง (Target) */}
+  <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[20px] drop-shadow-sm opacity-80 z-0">
+    🏆 
+  </div>
+
+</div>
 
                 </div>
               </div>
@@ -585,14 +791,48 @@ const getCurrentJargons = () => {
           </div>
         )}
         
-        {/* --- LOADING SCREEN --- */}
-        {gameState === "loading" && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex-1 flex flex-col items-center justify-center p-8 bg-stone-950">
-            <Loader2 size={50} className="text-amber-500 animate-spin mb-6" />
-            <h2 className="text-xl font-bold text-white mb-2 text-center tracking-wide">กำลังประมวลผล...</h2>
-            <p className="text-stone-400 text-[13px] text-center font-light">สแกน AVATAR ทางการเงินของคุณ 📉📈</p>
-          </motion.div>
+      {/* --- LOADING SCREEN --- */}
+{gameState === "loading" && (
+  <motion.div 
+    initial={{ opacity: 0 }} 
+    animate={{ opacity: 1 }} 
+    className="flex-1 flex flex-col items-center justify-center p-8 bg-stone-950 relative overflow-hidden"
+  >
+    {/* เอฟเฟกต์แสงเงาด้านหลัง (Glow Effect) */}
+    <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-amber-500/10 rounded-full blur-[60px] pointer-events-none"></div>
+
+    <Loader2 size={52} className="text-amber-500 animate-spin mb-6 z-10 drop-shadow-[0_0_15px_rgba(245,158,11,0.4)]" />
+    
+    <h2 className="text-xl font-bold text-white mb-2 text-center tracking-wide z-10">กำลังประมวลผล...</h2>
+    <p className="text-stone-400 text-[13px] text-center font-light mb-12 z-10">สแกนพฤติกรรมและจิตวิทยาการเงินของคุณ 📉📈</p>
+
+    {/* กรอบโชว์ Quote */}
+    <motion.div 
+      initial={{ opacity: 0, y: 15 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+      className="max-w-[280px] text-center z-10 bg-stone-900/60 p-5 rounded-2xl border border-stone-800/80 backdrop-blur-sm shadow-xl"
+    >
+      <div className="text-amber-500/40 text-4xl leading-none absolute -top-3 -left-2 font-serif">"</div>
+      
+      <p className="text-stone-300 text-[12px] italic leading-relaxed mb-4 relative z-10">
+        {randomQuote.text.split("'").map((part, i) => 
+          i % 2 === 1 ? <span key={i} className="text-amber-400 font-semibold">{part}</span> : part
         )}
+      </p>
+      
+      <div className="flex flex-col items-center justify-center gap-0.5 relative z-10">
+        <span className="text-stone-100 text-[10px] font-bold tracking-wide uppercase">
+          — {randomQuote.author} —
+        </span>
+        <span className="text-stone-500 text-[9px] tracking-wider">
+          {randomQuote.book}
+        </span>
+      </div>
+    </motion.div>
+
+  </motion.div>
+)}
 
         {/* --- RESULT SCREEN --- */}
         {gameState === "result" && currentResult && matchStats && (
