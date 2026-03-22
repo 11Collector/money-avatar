@@ -647,13 +647,33 @@ export default function Home() {
     }`;
   };
 
-  const getCurrentJargons = () => {
+const getCurrentJargons = () => {
     let textPool = "";
     if (gameState === "playing" && activeScenarios[currentIndex]) {
       const currentQ = activeScenarios[currentIndex];
       textPool = [currentQ.npcName, currentQ.role, currentQ.message, ...currentQ.choices.map((c: any) => c.text)].join(" ").toLowerCase();
     } else if (gameState === "result" && currentResult) {
-      textPool = [currentResult.title, currentResult.subtitle, currentResult.desc, currentResult.motto, currentResult.bestPartner.name, currentResult.bestPartner.desc, currentResult.kryptonite.name, currentResult.kryptonite.desc].join(" ").toLowerCase();
+      // ดึงข้อมูลจากตัวตนหลัก
+      let resultTexts = [
+        currentResult.title, 
+        currentResult.subtitle, 
+        currentResult.desc, 
+        currentResult.motto, 
+        currentResult.bestPartner.name, 
+        currentResult.bestPartner.desc, 
+        currentResult.kryptonite.name, 
+        currentResult.kryptonite.desc
+      ];
+
+      // เพิ่มข้อมูล Asset ที่แนะนำจากตัวตนรอง (Secondary Persona)
+      if (secondaryResult) {
+        resultTexts.push(
+          secondaryResult.bestPartner.name,
+          secondaryResult.bestPartner.desc
+        );
+      }
+
+      textPool = resultTexts.join(" ").toLowerCase();
     } else return [];
 
     return jargonDict.filter(jargon => jargon.keywords.some(kw => {
@@ -714,7 +734,7 @@ export default function Home() {
           </motion.div>
         )}
 
-        {/* --- PLAYING SCREEN --- */}
+{/* --- PLAYING SCREEN --- */}
         {gameState === "playing" && activeScenarios.length > 0 && (
           <div className="flex flex-col h-full bg-[#F4F3ED]">
             <div className="bg-stone-950 text-white px-3 py-3 flex items-center justify-between shadow-md shrink-0 border-b border-amber-500/20">
@@ -728,42 +748,75 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex items-center gap-1.5 shrink-0">
-                <div className="flex items-center gap-2.5 shrink-0">
-  {/* 1. Progress Bar (ย้ายมาอยู่ด้านซ้ายของปุ่ม) */}
-  <div className="w-24 sm:w-32 h-2.5 bg-stone-800 rounded-full overflow-hidden border border-stone-700/50 shadow-inner shrink-0 relative">
-    <motion.div 
-      className="absolute top-0 left-0 h-full bg-gradient-to-r from-amber-500 to-yellow-300"
-      initial={{ width: '2%' }}
-      animate={{ width: `${Math.max(2, (answers.length / TOTAL_QUESTIONS) * 100)}%` }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-    />
-    <motion.div 
-      className="absolute top-0 bottom-0 w-4 bg-white/30 blur-[2px]"
-      initial={{ left: '-10%' }}
-      animate={{ left: `calc(${Math.max(2, (answers.length / TOTAL_QUESTIONS) * 100)}% - 8px)` }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-    />
-  </div>
+                <div className="flex items-center gap-2.5 shrink-0 mr-1 sm:mr-3">
+                  
+                  {/* 1. Progress Bar (ปรับให้มีไอคอนคนวิ่ง) */}
+                 {/* 1. Progress Bar (ปรับให้มีไอคอนเหรียญทอง) */}
+                  <div className="relative w-28 sm:w-36 flex items-center">
+                    <div className="w-full h-2.5 bg-stone-800 rounded-full overflow-hidden border border-stone-700/50 shadow-inner relative">
+                      <motion.div 
+                        className="absolute top-0 left-0 h-full bg-gradient-to-r from-amber-500 to-yellow-300"
+                        initial={{ width: '2%' }}
+                        animate={{ width: `${Math.max(2, (answers.length / TOTAL_QUESTIONS) * 100)}%` }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                      />
+                      <motion.div 
+                        className="absolute top-0 bottom-0 w-4 bg-white/30 blur-[2px]"
+                        initial={{ left: '-10%' }}
+                        animate={{ left: `calc(${Math.max(2, (answers.length / TOTAL_QUESTIONS) * 100)}% - 8px)` }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                      />
+                    </div>
+                    {/* ไอคอนเหรียญทอง */}
+                   {/* ไอคอนเหรียญทอง (เพิ่มเอฟเฟกต์หมุนและเด้ง) */}
+                {/* ไอคอนเหรียญทอง (แก้ Error Spring Keyframes) */}
+                    <motion.div
+                      className="absolute top-1/2 -translate-y-1/2 text-[18px] drop-shadow-md z-10"
+                      initial={{ left: '0%', rotate: 0 }}
+                      animate={{ 
+                        left: `calc(${Math.max(2, (answers.length / TOTAL_QUESTIONS) * 100)}% - 12px)`,
+                        rotate: answers.length * 360,
+                        scale: [1, 1.3, 1] // ให้มันเด้งขยายตัว
+                      }}
+                      transition={{ 
+                        // แยกการตั้งค่า: ให้ left กับ rotate เป็นสปริง
+                        left: { type: "spring", bounce: 0.4, duration: 0.5 },
+                        rotate: { type: "spring", bounce: 0.4, duration: 0.5 },
+                        // ส่วน scale ให้เป็นแบบปกติ (tween) เพื่อให้รองรับค่า [1, 1.3, 1]
+                        scale: { duration: 0.3 } 
+                      }}
+                    >
+                      💰
+                    </motion.div>
+                  </div>
 
-  {/* 2. ปุ่มคลังศัพท์ (ย้ายไปอยู่ขวาสุดริมจอ) */}
-  <button onClick={() => setShowJargon(true)} className="p-1.5 bg-stone-800/80 text-[#00bfff] hover:text-white hover:bg-stone-700 rounded-full transition-all active:scale-90 shrink-0 border border-stone-700/50 relative">
-    <BookOpen size={16} />
-    {activeJargons.length > 0 && <span className="absolute -top-0.5 -right-0.5 bg-red-500 w-2.5 h-2.5 rounded-full border border-stone-900 animate-pulse"></span>}
-  </button>
-
-</div>
+                </div>
               </div>
             </div>
+            
             <div className="flex-1 p-5 overflow-y-auto flex flex-col justify-center min-h-[250px]"> 
               <AnimatePresence mode="wait">
                 <motion.div key={currentIndex} initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: -10 }} className="bg-stone-800 p-6 pt-7 rounded-2xl shadow-xl w-full max-w-[92%] border-l-4 border-amber-400 relative mx-auto my-auto">
+                  
+                  {/* Tag Situation ด้านซ้าย */}
                   <div className="absolute -top-3 left-4 bg-amber-400 text-stone-900 px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide flex items-center gap-1 shadow-sm">
                     <AlertTriangle size={12}/> Situation
                   </div>
-                  <p className="text-[15px] text-center leading-relaxed font-medium text-stone-100 drop-shadow-sm">{activeScenarios[currentIndex]?.message}</p>
+
+                  {/* 2. ปุ่มคลังศัพท์ (ย้ายมาตรงบนขวากรอบ Situation) */}
+                  <button 
+                    onClick={() => setShowJargon(true)} 
+                    className="absolute -top-3 right-4 p-1.5 bg-stone-900 text-[#00bfff] hover:text-white hover:bg-stone-700 rounded-full transition-all active:scale-90 border border-stone-600 shadow-md flex items-center justify-center z-10"
+                  >
+                    <BookOpen size={14} />
+                    {activeJargons.length > 0 && <span className="absolute -top-0.5 -right-0.5 bg-red-500 w-2.5 h-2.5 rounded-full border border-stone-800 animate-pulse"></span>}
+                  </button>
+
+                  <p className="text-[15px] text-center leading-relaxed font-medium text-stone-100 drop-shadow-sm mt-1">{activeScenarios[currentIndex]?.message}</p>
                 </motion.div>
               </AnimatePresence>
             </div>
+            
             <div className="bg-[#FCFBF8] p-4 pb-6 border-t border-stone-200 rounded-t-3xl shadow-[0_-10px_30px_rgba(0,0,0,0.03)] shrink-0 z-20">
               <div className="w-12 h-1 bg-stone-300 rounded-full mx-auto mb-4"></div>
               <div className="space-y-3 max-h-[45vh] overflow-y-auto p-1 pb-6">
@@ -779,7 +832,7 @@ export default function Home() {
             </div>
           </div>
         )}
-
+        
         {/* --- LOADING SCREEN --- */}
         {gameState === "loading" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex-1 flex flex-col items-center justify-center p-8 bg-stone-950">
