@@ -226,15 +226,23 @@ const profileCenters = [
 ];
 
 const calculatePersona = (riskScore: number, discScore: number) => {
-  const results = profileCenters.map((profile) => {
-    // หาความต่างของคะแนน (Euclidean Distance)
-    const distance = Math.hypot(riskScore - profile.risk, discScore - profile.disc);
-    return { id: profile.id, distance };
-  });
+    const results = profileCenters.map((profile) => {
+      // หาความต่างของคะแนน (Euclidean Distance)
+      const distance = Math.hypot(riskScore - profile.risk, discScore - profile.disc);
+      return { id: profile.id, distance, profileRisk: profile.risk, profileDisc: profile.disc };
+    });
 
-  // เรียงลำดับตัวที่ใกล้ที่สุด
-  results.sort((a, b) => a.distance - b.distance);
-  
+    // เรียงลำดับตัวที่ใกล้ที่สุด
+    results.sort((a, b) => {
+      if (a.distance === b.distance) {
+        // Tie-breaker: ถ้าดึงดูดเท่ากัน ให้เลือก Persona ที่มี 'วินัย (Disc)' ต่ำกว่าเป็นหลัก 
+        // (เพราะมนุษย์มีแนวโน้มจะหย่อนยานมากกว่าเคร่งครัด)
+        return a.profileDisc - b.profileDisc; 
+      }
+      return a.distance - b.distance;
+    });
+    
+    // ... โค้ดส่วนที่เหลือเหมือนเดิม
   const maxDist = 14.14; // ระยะไกลสุดที่เป็นไปได้ในกราฟ 10x10
   const calculateMatch = (dist: number) => Math.max(0, Math.round(((maxDist - dist) / maxDist) * 100));
 
