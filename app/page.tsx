@@ -235,14 +235,16 @@ const calculatePersona = (riskScore: number, discScore: number) => {
     // เรียงลำดับตัวที่ใกล้ที่สุด
     results.sort((a, b) => {
       if (a.distance === b.distance) {
-        // Tie-breaker: ถ้าดึงดูดเท่ากัน ให้เลือก Persona ที่มี 'วินัย (Disc)' ต่ำกว่าเป็นหลัก 
-        // (เพราะมนุษย์มีแนวโน้มจะหย่อนยานมากกว่าเคร่งครัด)
-        return a.profileDisc - b.profileDisc; 
+        // Tie-breaker 1: ถ้าดึงดูดเท่ากัน ให้ปัดลงไปหาวินัย (Disc) ต่ำกว่าก่อน (เพราะคนเราหย่อนยานง่าย)
+        if (a.profileDisc !== b.profileDisc) {
+           return a.profileDisc - b.profileDisc; 
+        }
+        // Tie-breaker 2: ถ้าวินัยเท่ากันอีก ให้ปัดลงไปหาความเสี่ยง (Risk) ต่ำกว่า เพื่อความปลอดภัย
+        return a.profileRisk - b.profileRisk;
       }
       return a.distance - b.distance;
     });
     
-    // ... โค้ดส่วนที่เหลือเหมือนเดิม
   const maxDist = 14.14; // ระยะไกลสุดที่เป็นไปได้ในกราฟ 10x10
   const calculateMatch = (dist: number) => Math.max(0, Math.round(((maxDist - dist) / maxDist) * 100));
 
@@ -477,12 +479,20 @@ export default function Home() {
   const TOTAL_QUESTIONS = 10;
 
   // --- DERIVED RESULTS (For the Result Screen) ---
+// --- DERIVED RESULTS (For the Result Screen) ---
   const matchStats = useMemo(() => {
     if (gameState !== "result" || answers.length < TOTAL_QUESTIONS) return null;
-    const finalRiskScore = answers.reduce((sum, ans) => sum + (ans?.risk || 0), 0);
-    const finalDiscScore = answers.reduce((sum, ans) => sum + (ans?.disc || 0), 0);
+    
+    const rawRiskScore = answers.reduce((sum, ans) => sum + (ans?.risk || 0), 0);
+    const rawDiscScore = answers.reduce((sum, ans) => sum + (ans?.disc || 0), 0);
+    
+    // แปลงให้เป็นสเกลเต็ม 10 เสมอ (Normalization) 
+    // เผื่ออนาคตเปลี่ยน TOTAL_QUESTIONS เป็น 15 หรือ 20 ข้อ ระบบประเมินก็ยังแม่นยำ
+    const finalRiskScore = (rawRiskScore / TOTAL_QUESTIONS) * 10;
+    const finalDiscScore = (rawDiscScore / TOTAL_QUESTIONS) * 10;
+
     return calculatePersona(finalRiskScore, finalDiscScore);
-  }, [gameState, answers]);
+  }, [gameState, answers, TOTAL_QUESTIONS]);
 
 const randomQuote = useMemo(() => {
     if (gameState === "loading") {
@@ -913,7 +923,7 @@ const getCurrentJargons = () => {
                           <div className={getMatrixClass('MID_RISK_HIGH_DISC')}>นักปั้นพอร์ต</div>
                           <div className={getMatrixClass('LOW_RISK_LOW_DISC')}>ผู้ประสบภัย</div>
                           <div className={getMatrixClass('LOW_RISK_MID_DISC')}>สายเซฟโซน</div>
-                          <div className={getMatrixClass('LOW_RISK_HIGH_DISC')}>พิทักษ์เงินฝาก</div>
+                          <div className={getMatrixClass('LOW_RISK_HIGH_DISC')}>พิทักษ์เงินต้น</div>
                         </motion.div>
                       </div>
                      {/* แกน X แนวนอน (ใช้ตามฟีล ➔ มีระบบ) */}
