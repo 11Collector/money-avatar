@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        destination: "https://www.upskilleveryday.com/tools/money-avatar",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
